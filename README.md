@@ -1,10 +1,10 @@
 # [name of app goes here]
 
 ## Authors
-* 
-* 
-* 
-* 
+* Daniel Park 
+* Maria Hamilton 
+* Josh Wu
+* Theo Robinson 
 
 ## Project Pitch and description 
 The year is 2023 and to some people's surprise, Twitter died. In its place, a new social media has sprung up. [Project 3] is a blog-style social media app that lets users post their thoughts and commenters can wage flame wars against each other in the comment sections (if it exists 🤫). 
