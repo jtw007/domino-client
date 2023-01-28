@@ -1,13 +1,24 @@
 import { useState, useEffect } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, Link } from 'react-router-dom'
 import axios from 'axios'
+import jwt_decode from 'jwt-decode'
 
 export default function Profile({ currentUser, handleLogout }) {
 	// state for the secret message (aka user privilaged data)
 	const [msg, setMsg] = useState('')
+	const [posts, setPosts] = useState([])
 	
 	const navigate = useNavigate()
 
+	const generatePosts = posts.map((p, i) => {
+		return (
+			<div key={i}>
+				<Link ><h3>{p.title}</h3></Link>
+				<button>edit</button>
+				<button>delete</button>
+			</div>
+		)
+	})
 	// useEffect for getting the user data and checking auth
 	useEffect(() => {
 		const fetchData = async () => {
@@ -26,6 +37,15 @@ export default function Profile({ currentUser, handleLogout }) {
 					// await axios.post(url, requestBody (form data), options)
 					// set the secret user message in state
 					setMsg(response.data.msg)
+					
+					// decode the jwt token for funzies
+					const decoded = jwt_decode(token)
+					// console.log(decoded.id)
+					// grab the posts from the user in database and set it to state
+					const getPosts = await axios.get(`${process.env.REACT_APP_SERVER_URL}/api-v1/users/${decoded.id}`)
+					// console.log(getPosts.data.posts)
+					setPosts(getPosts.data.posts)
+
 				} catch (err) {
 					// if the error is a 401 -- that means that auth failed
 					console.warn(err)
@@ -48,9 +68,10 @@ export default function Profile({ currentUser, handleLogout }) {
 
 			<p>your email is {currentUser?.email}</p>
 
-			<h2>Here is the secret message that is only availible to users of User App:</h2>
-
-			<h3>{msg}</h3>
+			<div>
+				<h2>Your Posts:</h2>
+				{generatePosts}
+			</div>
 		</div>
 	)
 }
