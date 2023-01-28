@@ -14,7 +14,7 @@ export default function NewPost(){
     //invoke useNavigate hook to get a navigate function to use
     const navigate = useNavigate()
 
-
+    
     return(
         <>
         
