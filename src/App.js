@@ -1,14 +1,13 @@
 import {
   BrowserRouter as Router,
   Routes,
-  Route,
-  Navigate
+  Route
 } from 'react-router-dom'
 import { useState, useEffect } from 'react'
 import Login from './components/pages/Login'
 import Profile from './components/pages/Profile'
 import Register from './components/pages/Register'
-import Welcome from './components/pages/Welcome'
+import Home from './components/pages/Home'
 import Navbar from './components/Navbar'
 import './App.css'
 import jwt_decode from 'jwt-decode'
@@ -18,7 +17,7 @@ function App() {
   const [currentUser, setCurrentUser] = useState(null)
 
   // useEffect -- if the user navigates away form the page, we will log them back in
-  useEffect(() => {
+  useEffect(() => { 
     // check to see if token is in storage
     const token = localStorage.getItem('jwt')
     if (token) {
@@ -53,7 +52,7 @@ function App() {
         <Routes>
           <Route 
             path="/"
-            element={<Welcome />}
+            element={<Home />}
           />
 
           <Route 
