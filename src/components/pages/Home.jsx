@@ -16,11 +16,11 @@ export default function Home() {
 		fetchPosts()
 	}, [])
 	
-	const postComponents = posts.map(post, idx => {
+	const postComponents = posts.map((post, idx) => {
 		return (
-			<div key={idx}>
+			<div key={`post-${idx}`}>
 				<h3>{post.title}</h3>
-				<p>by: {post.user}</p>
+				<p>by: {post.user.name}</p>
 			</div>
 		)
 	})
