@@ -1,9 +1,11 @@
 // Details page
+import axios from "axios"
+import {UseState} from 'react'
 
-export default function postDetails(props) {
-    const [comment, setComments] = useState([]) // this seems wrong
+export default function PostDetails(props) {
+    const [comment, setComments] = UseState([]) // this seems wrong
 
-    useEffect(() => {
+    UseEffect(() => {
         const fetchPost = async () =>{
             try {
                 const response = await axios.get(`${process.env.REACT_APP_SERVER_URL}/posts/${_id}`)

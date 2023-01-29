@@ -12,6 +12,7 @@ import Navbar from './components/Navbar'
 import './App.css'
 import jwt_decode from 'jwt-decode'
 import NewPost from './components/pages/new-post/NewPost'
+import PostDetails from './components/pages/PostDetails'
 
 function App() {
   // the currently logged in user will be stored up here in state
@@ -82,6 +83,11 @@ function App() {
           <Route 
             path="/new-post"
             element={<NewPost handleLogout={handleLogout} currentUser={currentUser} setCurrentUser={setCurrentUser} />} 
+          />
+
+          <Route
+          path="/post-details"
+          element={<PostDetails handleLogout={handleLogout} currentUser={currentUser} setCurrentUser={setCurrentUser} />}
           />
         </Routes>
 
