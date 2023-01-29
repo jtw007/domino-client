@@ -1,6 +1,7 @@
 import axios from "axios"
 import { useState } from 'react'
-import { useNavigate } from "react-router-dom"
+import { useNavigate, Navigate } from "react-router-dom"
+import jwt_decode from 'jwt-decode'
 
 export default function NewPost(){
     //state that holds the value the user has typed
@@ -8,17 +9,24 @@ export default function NewPost(){
         //initialize all values as empty strings because this is a new post
         title: '',
         content: '',
+        user: ''
     })
     // console.log(process.env.REACT_APP_SERVER_URL)
     
     //invoke useNavigate hook to get a navigate function to use
     const navigate = useNavigate()
-
+    const token = localStorage.getItem('jwt')
+    if(!token) {
+        return <Navigate to="/login" />
+    }
+    const decoded = jwt_decode(token)
+    // console.log(decoded.id)
     //submit handler function that posts the form data from state to the backend
     const handleSubmit = (e) => {
         e.preventDefault()
-        //take form data from the state, post it to the backend with axios
-        axios.post(`${process.env.REACT_APP_SERVER_URL}`, form)
+        setForm({ ...form, user: decoded.id })
+        // take form data from the state, post it to the backend with axios
+        axios.post(`${process.env.REACT_APP_SERVER_URL}/posts`, form)
             .then(response => {
                 console.log(response.data)
                 //once backend gets back to use, navigate to the '/' (home route) to see all the posts
@@ -26,6 +34,8 @@ export default function NewPost(){
             })
             .catch(console.warn) //for errors 
     }
+
+    
     return(
         <div className="form-container">
 
@@ -48,6 +58,8 @@ export default function NewPost(){
                             title={form.content}
                             onChange={e => setForm({ ...form, content: e.target.value})}
                         />
+
+                       
 
                 </div> 
 
