@@ -2,7 +2,8 @@
 import axios from "axios"
 import {useState, useEffect} from 'react'
 import { useParams } from "react-router-dom"
-
+import { useNavigate, Navigate } from "react-router-dom"
+import jwt_decode from 'jwt-decode'
 
 export default function PostDetails() { 
     const [post, setPost] = useState([])
@@ -20,6 +21,27 @@ export default function PostDetails() {
         }
         fetchPost()
     }, [])
+    const [form, setForm] = useState({
+        content: '',
+        user: ''
+    })
+    const navigate = useNavigate()
+    const token = localStorage.getItem('jwt')
+    if(!token) {
+        return <Navigate to="/login" />
+    }
+    const decoded = jwt_decode(token)
+    
+    const handleSubmit = (e) => {
+        e.preventDefault()
+        setForm({ ...form, user: decoded.id })
+        axios.post(`${process.env.REACT_APP_SERVER_URL}/posts/${id}/comments`, form)
+            .then(response => {
+                console.log(response.data)
+                navigate(`/post/${id}`)
+            })
+            .catch(console.warn) 
+    }
     //   const commentComponents = comments.map((comment, idx) => {
 	// 	return (
 	// 		<div key={`comment-${idx}`}>
@@ -32,31 +54,33 @@ export default function PostDetails() {
 	// 		</div>
 	// 	)
 	// })  
-    // const commentComponents = post.map((post, idx) => {
-    //     return (
-    //       <div key={`post-${idx}`}>
-    //         {post.comments.map((comment, idx) => {
-    //           return (
-    //             <p key={`comment-${idx}`}>{comment.content}</p>
-    //           )
-    //         })}
-    //       </div>
-    //     )
-    //   })
+    const commentComponents = post.comments.map((comment, idx) => {
+        return (
+          <div key={`comment-${idx}`}>
+              <p>{comment.content}</p>
+          </div>
+        )
+      })
     return (
         <>
             <h3>{post.title}</h3>
             <div>{post.content}
             {/* <p>{post.user.name}</p> */} </div>
              <div>
-                {/* {commentComponents}   */}
+                {commentComponents}  
                
             </div>  
+            <form onSubmit={handleSubmit}>
             <div> 
                 <label></label>
-                <textarea placeholder="Make a new Comment"></textarea>
-                <button type='submit'>Submit</button>
+                <textarea id='comment' 
+                placeholder="Make a new Comment" 
+                value={form.content}  
+                onChange={e => setForm({ ...form, content: e.target.value})}></textarea>
+                <button type='submit' >Submit</button>
             </div>
+            </form>
+        
             
         </>
     )
