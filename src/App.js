@@ -9,7 +9,9 @@ import Profile from './components/pages/Profile'
 import Register from './components/pages/Register'
 import Home from './components/pages/Home'
 import Navbar from './components/Navbar'
+import Footer from './components/Footer'
 import './App.css'
+import './Footer.css'
 import jwt_decode from 'jwt-decode'
 import NewPost from './components/pages/new-post/NewPost'
 
@@ -86,6 +88,11 @@ function App() {
         </Routes>
 
       </div>
+
+      <footer>
+        <Footer />
+      </footer>
+
     </Router>
   );
 }
