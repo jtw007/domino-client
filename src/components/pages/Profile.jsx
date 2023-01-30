@@ -13,9 +13,7 @@ export default function Profile({ currentUser, handleLogout }) {
 	const generatePosts = posts.map((p, i) => {
 		return (
 			<div key={i}>
-				<h3>{p}</h3>
-				<button>edit</button>
-				<button>delete</button>
+				<h3>{p.title}</h3>
 			</div>
 		)
 	})
@@ -42,9 +40,10 @@ export default function Profile({ currentUser, handleLogout }) {
 					
 					// decode the jwt token for funzies
 					const decoded = jwt_decode(token)
-					// console.log(decoded.id)
+					console.log(decoded.id)
 					// grab the posts from the user in database and set it to state
 					const getPosts = await axios.get(`${process.env.REACT_APP_SERVER_URL}/api-v1/users/${decoded.id}`)
+					console.log(getPosts.data)
 					// console.log(getPosts.data.posts)
 					// console.log(getPosts.data)
 					setPosts(getPosts.data.posts)
