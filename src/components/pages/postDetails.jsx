@@ -35,7 +35,7 @@ export default function PostDetails() {
         <>
             <h3>{post.title}</h3>
             <div>{post.content}
-            {/* <p>Posted By: {post.user.name}</p> */}
+            <p>Posted By: {post.user.name}</p> 
             </div>
            {/*  <div>
             {commentComponents}
@@ -52,14 +52,14 @@ export default function PostDetails() {
     
     
 } 
-//show title
-// show content
-//show name of user
+//show title ✅
+// show content ✅
+//show name of user ✅
 // show comments (if no comment: display no comments yet)
 // delete button for each comment (only shows for comments of that specific user)
 // edit comment for each comment (only shows for comments of that specific user)
 // area text that displays only when edit button is clicked
-// area text to make a new comment (if user is not logged in: take user to login page)
+// area text to make a new comment (if user is not logged in: take user to login page) ✅
 
 
  
