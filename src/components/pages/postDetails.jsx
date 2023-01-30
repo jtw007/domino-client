@@ -6,6 +6,7 @@ import { useParams } from "react-router-dom"
 
 export default function PostDetails() { 
     const [post, setPost] = useState([])
+    // const [comments, setComments] = useState([])
     const {id} = useParams()
     useEffect(() => {
         const fetchPost = async () =>{
@@ -19,31 +20,41 @@ export default function PostDetails() {
         }
         fetchPost()
     }, [])
-    /* const commentComponents = comment.map((comment, idx) => {
-		return (
-			<div key={`comment-${idx}`}>
-				<p>By: {comment.user.name}</p>
-                <div>{comment.content}</div>
-                <button>Delete</button>
-                <button>Edit</button>
+    //   const commentComponents = comments.map((comment, idx) => {
+	// 	return (
+	// 		<div key={`comment-${idx}`}>
+	// 			<p>By: {comment.user.name}</p>
+    //             <div>{comment.content}</div>
+    //             <button>Delete</button>
+    //             <button>Edit</button>
               
                 
-			</div>
-		)
-	}) */
+	// 		</div>
+	// 	)
+	// })  
+    // const commentComponents = post.map((post, idx) => {
+    //     return (
+    //       <div key={`post-${idx}`}>
+    //         {post.comments.map((comment, idx) => {
+    //           return (
+    //             <p key={`comment-${idx}`}>{comment.content}</p>
+    //           )
+    //         })}
+    //       </div>
+    //     )
+    //   })
     return (
         <>
             <h3>{post.title}</h3>
             <div>{post.content}
-            <p>Posted By: {post.user.name}</p> 
-            </div>
-           {/*  <div>
-            {commentComponents}
-            </div> */}
-
+            {/* <p>{post.user.name}</p> */} </div>
+             <div>
+                {/* {commentComponents}   */}
+               
+            </div>  
             <div> 
                 <label></label>
-                <textarea>Make a new Comment</textarea>
+                <textarea placeholder="Make a new Comment"></textarea>
                 <button type='submit'>Submit</button>
             </div>
             
