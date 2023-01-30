@@ -1,14 +1,17 @@
-// Details page
+ // Details page
 import axios from "axios"
-import {UseState} from 'react'
+import {useState, useEffect} from 'react'
+import { useParams } from "react-router-dom"
 
-export default function PostDetails(props) {
-    const [comment, setComments] = UseState([]) // this seems wrong
 
-    UseEffect(() => {
+export default function PostDetails() { 
+    const [post, setPost] = useState([])
+    const {id} = useParams()
+    useEffect(() => {
         const fetchPost = async () =>{
+            //Grabbing the post by the id
             try {
-                const response = await axios.get(`${process.env.REACT_APP_SERVER_URL}/posts/${_id}`)
+                const response = await axios.get(`${process.env.REACT_APP_SERVER_URL}/posts/${id}`)
                 setPost(response.data)
             } catch (err) {
                 console.warn(err)
@@ -16,27 +19,39 @@ export default function PostDetails(props) {
         }
         fetchPost()
     }, [])
-
-    const commentComponents = comment.map((comment, idx) => {
+    /* const commentComponents = comment.map((comment, idx) => {
 		return (
 			<div key={`comment-${idx}`}>
 				<p>By: {comment.user.name}</p>
                 <div>{comment.content}</div>
                 <button>Delete</button>
                 <button>Edit</button>
+              
+                
 			</div>
 		)
-	})
+	}) */
     return (
         <>
-            <h3>{props.post.title}</h3>
-            <div>{props.post.content}
-            <p>Posted By: {props.post.user.name}</p>
+            <h3>{post.title}</h3>
+            <div>{post.content}
+            {/* <p>Posted By: {post.user.name}</p> */}
+            </div>
+           {/*  <div>
+            {commentComponents}
+            </div> */}
+
+            <div> 
+                <label></label>
+                <textarea>Make a new Comment</textarea>
+                <button type='submit'>Submit</button>
             </div>
             
         </>
     )
-}
+    
+    
+} 
 //show title
 // show content
 //show name of user
@@ -47,3 +62,4 @@ export default function PostDetails(props) {
 // area text to make a new comment (if user is not logged in: take user to login page)
 
 
+ 

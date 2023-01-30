@@ -86,10 +86,10 @@ function App() {
           />
 
           <Route
-          path="/post-details"
+          path="/post/:id"
           element={<PostDetails handleLogout={handleLogout} currentUser={currentUser} setCurrentUser={setCurrentUser} />}
           />
-        </Routes>
+        </Routes> 
 
       </div>
     </Router>
