@@ -63,10 +63,11 @@ export default function PostDetails() {
       })
     return (
         <>
-            <h3>{post.title}</h3>
+            <h2>{post.title}</h2>
             <div>{post.content}
             {/* <p>{post.user.name}</p> */} </div>
              <div>
+                 <h3>Comments:</h3>
                 {commentComponents}  
                
             </div>  
