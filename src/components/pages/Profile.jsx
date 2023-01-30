@@ -13,12 +13,14 @@ export default function Profile({ currentUser, handleLogout }) {
 	const generatePosts = posts.map((p, i) => {
 		return (
 			<div key={i}>
-				<Link ><h3>{p.title}</h3></Link>
+				<h3>{p}</h3>
 				<button>edit</button>
 				<button>delete</button>
 			</div>
 		)
 	})
+
+	console.log(generatePosts)
 	// useEffect for getting the user data and checking auth
 	useEffect(() => {
 		const fetchData = async () => {
@@ -44,6 +46,7 @@ export default function Profile({ currentUser, handleLogout }) {
 					// grab the posts from the user in database and set it to state
 					const getPosts = await axios.get(`${process.env.REACT_APP_SERVER_URL}/api-v1/users/${decoded.id}`)
 					// console.log(getPosts.data.posts)
+					// console.log(getPosts.data)
 					setPosts(getPosts.data.posts)
 
 				} catch (err) {
