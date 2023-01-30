@@ -97,4 +97,4 @@ export default function PostDetails() {
 // area text to make a new comment (if user is not logged in: take user to login page) ✅
 
 
- 
+// name change PostDetail
