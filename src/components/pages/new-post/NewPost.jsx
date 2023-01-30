@@ -51,7 +51,7 @@ export default function NewPost(){
                             type='text'
                             id='title'
                             placeholder="Title"
-                            name={form.title}
+                            value={form.title}
                             onChange={e => setForm({ ...form, title: e.target.value})}
                         />
 
@@ -60,11 +60,9 @@ export default function NewPost(){
                             type='text'
                             id='content'
                             placeholder="What's on your mind?"
-                            name={form.content}
+                            value={form.content}
                             onChange={e => setForm({ ...form, content: e.target.value})}
                         />
-
-                       
 
                 </div> 
 
