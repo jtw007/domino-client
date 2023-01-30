@@ -20,7 +20,7 @@ export default function PostDetails() {
             }
         }
         fetchPost()
-    }, [])
+    }, [post])
     const [form, setForm] = useState({
         content: '',
         user: ''
@@ -54,7 +54,7 @@ export default function PostDetails() {
 	// 		</div>
 	// 	)
 	// })  
-    const commentComponents = post.comments.map((comment, idx) => {
+    const commentComponents = post.comments?.map((comment, idx) => {
         return (
           <div key={`comment-${idx}`}>
               <p>{comment.content}</p>
@@ -70,9 +70,9 @@ export default function PostDetails() {
                 {commentComponents}  
                
             </div>  
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit} htmlFor='comment'>
             <div> 
-                <label></label>
+                <label htmlFor="comment"></label>
                 <textarea id='comment' 
                 placeholder="Make a new Comment" 
                 value={form.content}  
