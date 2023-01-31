@@ -66,6 +66,14 @@ export default function PostDetails() {
         }
     }
 
+    const handleDelete = async () => {
+        try {
+            await axios.delete(`${process.env.REACT_APP_SERVER_URL}/posts/${id}`)
+            navigate('/')
+        } catch(err) {
+            console.warn(err)
+        }
+    }
     // _____________________________________________DP
 
 
@@ -117,7 +125,7 @@ export default function PostDetails() {
                     Edit
                     </button>
                 </form>
-                
+                <button onClick={handleDelete}>Delete</button>
             </div>
 
 
