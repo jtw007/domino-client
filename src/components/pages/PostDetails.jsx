@@ -9,28 +9,26 @@ export default function PostDetails({currentUser}) {
     const [post, setPost] = useState([])
     // const [comments, setComments] = useState([])
     const {id} = useParams()
-    useEffect(() => {
-        const fetchPost = async () =>{
-            //Grabbing the post by the id
-            try {
-                const response = await axios.get(`${process.env.REACT_APP_SERVER_URL}/posts/${id}`)
-                setPost(response.data)
-            } catch (err) {
-                console.warn(err)
-            }
+    const fetchPost = async () =>{
+        //Grabbing the post by the id
+        try {
+            const response = await axios.get(`${process.env.REACT_APP_SERVER_URL}/posts/${id}`)
+            setPost(response.data)
+        } catch (err) {
+            console.warn(err)
         }
+    }
+    
+    useEffect(() => {
         fetchPost()
-    }, [post])
+    }, [])
     const [form, setForm] = useState({
         content: '',
         user: ''
     })
+   
     const navigate = useNavigate()
 
-    // if(!token) {
-    //     return <Navigate to="/login" />
-    // }
-    
     const handleSubmit = (e) => {
         e.preventDefault()
         setForm({ ...form, user: currentUser.id })
@@ -39,6 +37,8 @@ export default function PostDetails({currentUser}) {
                 navigate(`/post/${id}`)
             })
             .catch(console.warn) 
+        setForm({...form, content:''})
+        fetchPost()
     }
 
     const handleDeleteClick = async (commentId) => {
@@ -46,7 +46,7 @@ export default function PostDetails({currentUser}) {
         await axios.delete(`${process.env.REACT_APP_SERVER_URL}/posts/${id}/comment/${commentId}`)
             
         .then(response => {
-            navigate(`/post/${id}`)
+            fetchPost()
          })
             
        .catch(console.warn)
@@ -64,13 +64,21 @@ export default function PostDetails({currentUser}) {
         </form>
     )
     const commentComponents = post.comments?.map((comment, idx) => {
+        let ownComment = false
+        let buttons = ''
+        console.log(currentUser.id, comment)
+        if(currentUser.id === comment.user._id){
+            buttons =  <button onClick={() => handleDeleteClick(comment._id)}>Delete</button>
+            buttons+= <button>Edit</button>
+        }
+
         //console.log(comment)
         return (
           <div key={`comment-${idx}`}>
               <div>
                   {comment.content}
-                  <button onClick={() => handleDeleteClick(comment._id)}>Delete</button>
-                  <button>Edit</button>
+                  {buttons}
+                  
               </div>
           </div>
         )
@@ -82,11 +90,9 @@ export default function PostDetails({currentUser}) {
             {/* <p>{post.user.name}</p> */} </div>
              <div>
                  <h3>Comments:</h3>
-                {commentComponents}  
-               
+                {commentComponents}   
             </div>  
            {currentUser && commentForm}
-        
             
         </>
     )
