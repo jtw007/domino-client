@@ -76,7 +76,7 @@ export default function NavBar({ currentUser, handleLogout }) {
 		// 	</nav>
 			
 		// </nav>
-		<Navbar style={{ backgroundColor: 'rgba(0,68,129)' }} variant="dark" expand="lg">
+		<Navbar className="mb-5" style={{ backgroundColor: 'rgba(0,68,129)' }} variant="dark" expand="lg">
 			<Container>
 				<Navbar.Brand href="/">InstaKing</Navbar.Brand>
 

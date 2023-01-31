@@ -42,12 +42,14 @@ export default function NewPost(){
     }
     
     return(
-        <div className="post-container" style={{border: `1px, solid, red`}}>
+        <div className="post-container d-flex justify-content-center" >
 
             <form onSubmit={handleSubmit}>
-                <div className="form-container w-50" style={{height: 100, border: `1px, solid, red`}}>
-                    <div className="form-sheet" style={{border: `1px, solid, red`}}>
-                        <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+                <div className="form-container" style={{width: 300,}}>
+                    <div className="form-sheet">
+                    <p className="new-post fs-2">Create a Post</p>
+                  
+                        <Form.Group className="mb-1">
                             <Form.Label></Form.Label>
                             <Form.Control 
                             type="text" 
@@ -57,10 +59,11 @@ export default function NewPost(){
                             onChange={e => setForm({ ...form, title: e.target.value})}
                             />
                         </Form.Group>
-                        <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
+
+                        <Form.Group className="mb-3">
                             <Form.Label></Form.Label>
                             <Form.Control 
-                            as="textarea" rows={3} 
+                            as="textarea" rows={5} 
                             type='text'
                             id='content'
                             placeholder="What's on your mind?"
