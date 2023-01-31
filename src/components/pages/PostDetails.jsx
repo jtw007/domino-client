@@ -57,6 +57,7 @@ export default function PostDetails() {
     const handleEdit = async e => {
         e.preventDefault()
         try {
+            setEdit({ ...form, user: decoded.id })
             await axios.put(`${process.env.REACT_APP_SERVER_URL}/posts/${id}`, edit)
             const response = await axios.get(`${process.env.REACT_APP_SERVER_URL}/posts/`)
             console.log(response.data)
