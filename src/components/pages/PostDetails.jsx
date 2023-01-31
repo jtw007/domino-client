@@ -9,7 +9,7 @@ export default function PostDetails() {
     const [post, setPost] = useState([])
     
     // Daniel ________________________________________
-    const [show, setShow] = useState(false)
+    // const [show, setShow] = useState(false)
     const [edit, setEdit] = useState({
         title: '',
         content: ''
@@ -58,6 +58,8 @@ export default function PostDetails() {
         e.preventDefault()
         try {
             await axios.put(`${process.env.REACT_APP_SERVER_URL}/posts/${id}`, edit)
+            const response = await axios.get(`${process.env.REACT_APP_SERVER_URL}/posts/`)
+            console.log(response.data)
         } catch(err) {
             console.warn(err)
         }
@@ -93,32 +95,31 @@ export default function PostDetails() {
             
             {/* // Daniel ________________________________________ */}
             <div>
-                <form onSubmit={handleSubmit}>
+                <form onSubmit={handleEdit}>
                     <lable htmlFor='title'>Title:</lable>
                     <input 
                         type='text'
                         id='title'
-                        placeholer='title...'
-                        value={form.title}
-                        onChange={e => setEdit({ ...form, title: e.target.value })}
+                        placeholder='title...'
+                        value={edit.title}
+                        onChange={e => setEdit({ ...edit, title: e.target.value })}
                     />
                     <lable htmlFor='content'>Content:</lable>
                     <input 
                         type='text'
                         id='content'
-                        placeholer='content...'
-                        value={form.content}
-                        onChange={e => setEdit({ ...form, content: e.target.value })}
+                        placeholder='content...'
+                        value={edit.content}
+                        onChange={e => setEdit({ ...edit, content: e.target.value })}
                     />
+                    <button type='submit'>
+                    Edit
+                    </button>
                 </form>
+                
             </div>
 
 
-            <button
-                onClick={() => setShow()}
-                >
-            Edit
-            </button>
             
 
             {/* // _____________________________________________DP */}
