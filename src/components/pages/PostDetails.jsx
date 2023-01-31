@@ -24,6 +24,10 @@ export default function PostDetails({currentUser}) {
         content: '',
         user: ''
     })
+
+    const [editComment, setEditComment] = useState({
+        content: ''
+    })
     const {id} = useParams()
     const fetchPost = async () =>{
         //Grabbing the post by the id
@@ -66,15 +70,28 @@ export default function PostDetails({currentUser}) {
        .catch(console.warn)
     }
 
-    const handleEditClick = async (commentId) => {
-        // grabbing the comment by id and 'editing it' with axios
-        await axios.put(`${process.env.REACT_APP_SERVER_URL}/posts/${id}/comment/${commentId}`)
-        // calling fetchPost to 'refresh' the page (refresh might not be the right word but it's what happens in this case)
-        .then(response => {
-            fetchPost()
-        })
-        .catch(console.warn)
-    }
+    // const handleEditClick = async (commentId) => {
+    //     // grabbing the comment by id and 'editing it' with axios
+    //     await axios.put(`${process.env.REACT_APP_SERVER_URL}/posts/${id}/comment/${commentId}`, editComment)
+    //     // calling fetchPost to 'refresh' the page (refresh might not be the right word but it's what happens in this case)
+    //     .then(response => {
+    //         fetchPost()
+    //     })
+    //     .catch(console.warn)
+    // }
+    // const editCommentForm = (
+    //     <div> 
+    //       <form onSubmit={handleEditClick}>
+    //           <label htmlFor='editComment'>Edit Comment:</label>
+    //           <textarea id='editComment' 
+    //           placeholder="Edit your Comment" 
+    //           value={form.content}  
+    //           onChange={e => setForm({ ...form, content: e.target.value, user:currentUser.id})}>
+    //           </textarea>
+    //           <button type='submit' >Submit</button>
+    //           </form>
+    //   </div>
+    //   )  
     const commentForm = (
         // calls handleSubmit function every time the user clicks on the submit button
         <form onSubmit={handleSubmit} htmlFor='comment'>
@@ -119,8 +136,6 @@ export default function PostDetails({currentUser}) {
         const buttons = (
             <>
                 <button onClick={() => handleDeleteClick(comment._id)}>Delete</button>
-                <button onClick={() => handleEditClick(comment._id)}>Edit</button>
-        
             </>
         )
         console.log(currentUser?.id, comment)
@@ -138,7 +153,7 @@ export default function PostDetails({currentUser}) {
         <>
         <h2>{post.title}</h2>
         <div>{post.content}
-        {/* <p>{post.user.name}</p> */} </div>
+        <p>{post.user?.name}</p> </div>
          <div>
              <h3>Comments:</h3>
             {commentComponents}   
@@ -176,12 +191,8 @@ export default function PostDetails({currentUser}) {
 
             {/* // _____________________________________________DP */}
 
-            
-            
-        
     </>
     )
-    
     
 } 
 //show title ✅
