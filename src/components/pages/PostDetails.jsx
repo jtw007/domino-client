@@ -163,7 +163,7 @@ export default function PostDetails({currentUser}) {
             {/* // Daniel ________________________________________ */}
             <div>
                 <form onSubmit={handleEdit}>
-                    <lable htmlFor='title'>Title:</lable>
+                    <label htmlFor='title'>Title:</label>
                     <input 
                         type='text'
                         id='title'
@@ -171,7 +171,7 @@ export default function PostDetails({currentUser}) {
                         value={edit.title}
                         onChange={e => setEdit({ ...edit, title: e.target.value })}
                     />
-                    <lable htmlFor='content'>Content:</lable>
+                    <label htmlFor='content'>Content:</label>
                     <input 
                         type='text'
                         id='content'
