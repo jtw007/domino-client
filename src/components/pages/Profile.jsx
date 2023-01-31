@@ -12,12 +12,22 @@ export default function Profile({ currentUser, handleLogout }) {
 
 	const generatePosts = posts.map((p, i) => {
 		return (
-			<div key={i}>
+			<div key={`post-${i}`}>
 				<h3>{p.title}</h3>
 			</div>
 		)
 	})
 
+	const handleDelete = async (e) => {
+		e.preventDefault()
+		try {
+			await axios.delete(`${process.env.REACT_APP_SERVER_URL}/api-v1/users/${currentUser.id}`)
+			handleLogout()
+			navigate('/')
+		} catch(err) {
+			console.warn(err)
+		}
+	}
 	console.log(generatePosts)
 	// useEffect for getting the user data and checking auth
 	useEffect(() => {
@@ -69,6 +79,7 @@ export default function Profile({ currentUser, handleLogout }) {
 			<h1>Hello, {currentUser?.name}</h1>
 
 			<p>your email is {currentUser?.email}</p>
+			<button onClick={handleDelete}>Delete Your Account</button>
 
 			<div>
 				<h2>Your Posts:</h2>
