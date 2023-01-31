@@ -72,24 +72,6 @@ export default function NewPost(){
                             />
                         </Form.Group>
 
-                        {/* <p className="new-post">Create a Post</p> */}
-                        {/* <label htmlFor="title"></label>
-                            <input 
-                                type='text'
-                                id='title'
-                                placeholder="Title"
-                                value={form.title}
-                                onChange={e => setForm({ ...form, title: e.target.value})}
-                            />
-
-                        <label htmlFor="content"></label>
-                            <input 
-                                type='text'
-                                id='content'
-                                placeholder="What's on your mind?"
-                                value={form.content}
-                                onChange={e => setForm({ ...form, content: e.target.value})}
-                            /> */}
 
                     </div> 
 

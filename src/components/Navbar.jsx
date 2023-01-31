@@ -10,19 +10,6 @@ export default function NavBar({ currentUser, handleLogout }) {
 		<>
 		{/* if the user is logged in... */}
 
-		{/* <Navbar bg="primary" expand="lg"> */}
-			{/* <Link to="/"> */}
-				{/* <span onClick={handleLogout}>Logout</span> */}
-			{/* </Link> */}
-
-			{/* <Link to="/profile">
-				Profile
-			</Link> */}
-
-			{/* <Link to="/new-post">
-				New Post
-			</Link> */}
-		{/* </Navbar> */}
 		<Navbar style={{ backgroundColor: 'rgba(0,68,129)' }} variant="dark" expand="xxl">
 			<Container>
 				<Navbar.Toggle aria-controls="basic-navbar-nav" />
@@ -54,28 +41,12 @@ export default function NavBar({ currentUser, handleLogout }) {
 				</Navbar.Collapse>
 			</Container>
    		</Navbar>
-			{/* <Link to="/register">
-				Register
-			</Link>
 
-			<Link to="/login">
-				Login
-			</Link> */}
 		</>
 	 )
 
 	return (
-		// <nav className="nav-container">
-		// 	<nav className='nav'>
-		// 		{/* user always sees this section */}
-		// 		<Link to="/">
-		// 			<p>InstaKing</p>
-		// 		</Link>
 
-		// 		{currentUser ? loggedIn : loggedOut}
-		// 	</nav>
-			
-		// </nav>
 		<Navbar className="mb-5" style={{ backgroundColor: 'rgba(0,68,129)' }} variant="dark" expand="lg">
 			<Container>
 				<Navbar.Brand href="/">InstaKing</Navbar.Brand>
