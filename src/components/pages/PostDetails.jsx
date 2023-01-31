@@ -15,7 +15,7 @@ export default function PostDetails({currentUser}) {
         title: '',
         content: ''
     })
-
+    
     // _____________________________________________DP
 
 // const [comments, setComments] = useState([])
@@ -136,7 +136,7 @@ export default function PostDetails({currentUser}) {
         const buttons = (
             <>
                 <button onClick={() => handleDeleteClick(comment._id)}>Delete</button>
-            </>
+            </> 
         )
         console.log(currentUser?.id, comment)
         
