@@ -2,6 +2,8 @@ import axios from "axios"
 import { useState } from 'react'
 import { useNavigate, Navigate } from "react-router-dom"
 import jwt_decode from 'jwt-decode'
+import Form from 'react-bootstrap/Form';
+import Button from 'react-bootstrap/Button'
 
 export default function NewPost(){
     //state that holds the value the user has typed
@@ -40,33 +42,43 @@ export default function NewPost(){
     }
     
     return(
-        <div className="form-container">
+        <div className="post-container d-flex justify-content-center" >
 
             <form onSubmit={handleSubmit}>
-                <div className="form-sheet">
-
-                    <p className="new-post">Create a Post</p>
-                    <label htmlFor="title"></label>
-                        <input 
-                            type='text'
-                            id='title'
-                            placeholder="Title"
+                <div className="form-container" style={{width: 300,}}>
+                    <div className="form-sheet">
+                    <p className="new-post fs-2">Create a Post</p>
+                  
+                        <Form.Group className="mb-1">
+                            <Form.Label></Form.Label>
+                            <Form.Control 
+                            type="text" 
+                            id="title"
+                            placeholder="Title" 
                             value={form.title}
                             onChange={e => setForm({ ...form, title: e.target.value})}
-                        />
+                            />
+                        </Form.Group>
 
-                    <label htmlFor="content"></label>
-                        <input 
+                        <Form.Group className="mb-3">
+                            <Form.Label></Form.Label>
+                            <Form.Control 
+                            as="textarea" rows={5} 
                             type='text'
                             id='content'
                             placeholder="What's on your mind?"
                             value={form.content}
                             onChange={e => setForm({ ...form, content: e.target.value})}
-                        />
+                            />
+                        </Form.Group>
 
-                </div> 
 
-                <button className="post-button" type="submit">Post</button>
+                    </div> 
+
+                <Button variant="outline-info" type="submit" size="lg">Post</Button>
+                </div>
+                    
+
             </form>
 
         </div>
