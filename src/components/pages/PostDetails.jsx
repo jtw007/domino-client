@@ -8,6 +8,10 @@ import { useNavigate, Navigate } from "react-router-dom"
 export default function PostDetails({currentUser}) { 
     const [post, setPost] = useState([])
     // const [comments, setComments] = useState([])
+    const [form, setForm] = useState({
+        content: '',
+        user: ''
+    })
     const {id} = useParams()
     const fetchPost = async () =>{
         //Grabbing the post by the id
@@ -22,16 +26,12 @@ export default function PostDetails({currentUser}) {
     useEffect(() => {
         fetchPost()
     }, [])
-    const [form, setForm] = useState({
-        content: '',
-        user: ''
-    })
-   
+  
     const navigate = useNavigate()
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        setForm({ ...form, user: currentUser.id })
+        setForm({ ...form, user: currentUser.id})
         axios.post(`${process.env.REACT_APP_SERVER_URL}/posts/${id}/comments`, form)
             .then(response => {
                 navigate(`/post/${id}`)
@@ -39,6 +39,8 @@ export default function PostDetails({currentUser}) {
             .catch(console.warn) 
         setForm({...form, content:''})
         fetchPost()
+        console.log(form)
+        console.log(currentUser)
     }
 
     const handleDeleteClick = async (commentId) => {
@@ -69,28 +71,29 @@ export default function PostDetails({currentUser}) {
             <textarea id='comment' 
             placeholder="Make a new Comment" 
             value={form.content}  
-            onChange={e => setForm({ ...form, content: e.target.value})}></textarea>
+            onChange={e => setForm({ ...form, content: e.target.value, user:currentUser.id})}></textarea>
             <button type='submit' >Submit</button>
         </div>
         </form>
     )
+    
     const commentComponents = post.comments?.map((comment, idx) => {
         // ? -> basically some conditional logic like an if else, but here we’re just checking if the post has a property comments
         let ownComment = false
-        let buttons = ''
-        console.log(currentUser.id, comment)
-        if(currentUser.id === comment.user._id){
-            buttons =  <button onClick={() => handleDeleteClick(comment._id)}>Delete</button>
-            buttons+= <button>Edit</button>
-        }
+        const buttons = (
+            <>
+                <button onClick={() => handleDeleteClick(comment._id)}>Delete</button>
+                <button onClick={() => handleEditClick(comment._id)}>Edit</button>
         
-        
+            </>
+        )
+        console.log(currentUser?.id, comment)
         
         return (
           <div key={`comment-${idx}`}>
               <div>
                   {comment.content}
-                  {buttons}
+                  {currentUser?.id === comment.user ? buttons : ''}
               </div>
           </div>
         )

@@ -18,7 +18,7 @@ import PostDetails from './components/pages/PostDetails'
 //import Css files 
 import './css-files/App.css'
 import './css-files/Footer.css'
-import './css-files/Navbar.css'
+import './css-files/NavBar.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
