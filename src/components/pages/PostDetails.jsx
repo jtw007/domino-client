@@ -4,6 +4,7 @@ import {useState, useEffect} from 'react'
 import { useParams } from "react-router-dom"
 import { useNavigate, Navigate } from "react-router-dom"
 import EditPost from "./PostEdit"
+import { Card, Button } from 'react-bootstrap'
 
 
 export default function PostDetails({currentUser}) { 
@@ -96,16 +97,27 @@ export default function PostDetails({currentUser}) {
       })
     return (
         <>
-        <h2>{post.title}</h2>
-        <div>{post.content}
-        {/* // Daniel ________________________________________ */}
         <div>
-            {currentUser?.id === post.user?._id && showEdit}    
-        </div>
-        {/* // _____________________________________________DP */}
+        <Card className="w-75 mx-auto mt-4">
+					<Card.Header><strong><h3>{post.title}</h3></strong></Card.Header>
+        <Card.Body>
+
+            <Card.Text>
+                <p>By: {post.user?.name}</p> 
+                <div>{post.content}</div>
+                <div>
+                {/* // Daniel ________________________________________ */}
+                {currentUser?.id === post.user?._id && showEdit}    
+                </div>
+                {/* // _____________________________________________DP */}
+
+			</Card.Text>
+		</Card.Body>			
+        </Card>
         
-        <p>{post.user?.name}</p> </div>
-         <div>
+        </div>
+
+        <div>
              <h3>Comments:</h3>
             {commentComponents}   
         </div>  
