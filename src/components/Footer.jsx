@@ -13,11 +13,11 @@ import Dropdown from 'react-bootstrap/Dropdown';
 export default function Footer() {
     return (
 
-    <MDBFooter bgColor='light' className='text-center'>
+    <MDBFooter style={{ backgroundColor: 'rgba(255, 255, 255)', maxHeight: '300px', overflow: 'auto' }} className='text-center hover-shadow shadow-1-strong'>
       <MDBContainer className='p-0 position-relative' >
         <MDBRow>
 
-          <MDBCol sm='0' md='6' className='mb-0 mb-sm-0'>
+          <MDBCol lg='3' md='6' className='mb-0 mb-md-0'>
             <Dropdown>
                 <Dropdown.Toggle variant="btn-outline" id="dropdown-basic">
                     Daniel Park
@@ -46,7 +46,7 @@ export default function Footer() {
             </ul> */}
           </MDBCol>
 
-          <MDBCol sm='0' md='6' className='mb-0 mb-sm-0'>
+          <MDBCol lg='3' md='6' className='mb-0 mb-md-0'>
             <Dropdown>
                 <Dropdown.Toggle variant="btn-outline" id="dropdown-basic">
                     Josh Wu
@@ -76,7 +76,7 @@ export default function Footer() {
             </ul> */}
           </MDBCol>
 
-          <MDBCol sm='0' md='6' className='mb-0 mb-sm-0'>
+          <MDBCol lg='3' md='6' className='mb-0 mb-md-0'>
             <Dropdown>
                 <Dropdown.Toggle variant="btn-outline" id="dropdown-basic">
                     Maria Hamilton 
@@ -106,7 +106,7 @@ export default function Footer() {
             </ul> */}
           </MDBCol>
 
-          <MDBCol sm='0' md='6' className='mb-0 mb-sm-0'>
+          <MDBCol lg='3' md='6' className='mb-0 mb-md-0'>
             <Dropdown>
                 <Dropdown.Toggle variant="btn-outline" id="dropdown-basic">
                     Theo Robinson

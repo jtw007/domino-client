@@ -16,6 +16,7 @@ import NewPost from './components/pages/new-post/NewPost'
 import PostDetails from './components/pages/PostDetails'
 
 //import Css files 
+import './css-files/index.css'
 import './css-files/App.css'
 import './css-files/Footer.css'
 import './css-files/NavBar.css'
@@ -47,9 +48,10 @@ function App() {
       setCurrentUser(null)
     }
   }
-
+    
   return (
     <Router>
+      
       <header>
         <NavBar 
           currentUser={currentUser}
