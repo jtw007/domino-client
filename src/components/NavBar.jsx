@@ -14,7 +14,7 @@ export default function NavBar({ currentUser, handleLogout }) {
 			<Container>
 				<Navbar.Toggle aria-controls="basic-navbar-nav" />
 				<Navbar.Collapse id="basic-navbar-nav">
-				<Nav className="me-auto">
+				<Nav className="me-right">
 					<Nav.Link href="/new-post">New Post</Nav.Link>
 					<Nav.Link href="/profile">Profile</Nav.Link>
 					<Nav.Link href="/"><span onClick={handleLogout}>Logout</span></Nav.Link>
@@ -34,7 +34,7 @@ export default function NavBar({ currentUser, handleLogout }) {
 			<Container>
 				<Navbar.Toggle aria-controls="basic-navbar-nav" />
 				<Navbar.Collapse id="basic-navbar-nav">
-				<Nav className="me-auto">
+				<Nav className="me-right">
 					<Nav.Link href="/register">Register</Nav.Link>
 					<Nav.Link href="/login">Login</Nav.Link>
 				</Nav>
@@ -51,8 +51,8 @@ export default function NavBar({ currentUser, handleLogout }) {
 			<Container>
 				<Navbar.Brand href="/">InstaKing</Navbar.Brand>
 
+				{currentUser ? loggedIn : loggedOut}
 			</Container>
-			{currentUser ? loggedIn : loggedOut}
     	</Navbar>
 
 	)
