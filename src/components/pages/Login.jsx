@@ -2,6 +2,9 @@ import { useState } from 'react'
 import axios from 'axios'
 import jwt_decode from 'jwt-decode'
 import { Navigate } from 'react-router-dom'
+import Button from 'react-bootstrap/Button';
+import Form from 'react-bootstrap/Form';
+
 
 export default function Login({ currentUser, setCurrentUser }) {
 	// state for the controlled form
@@ -45,31 +48,34 @@ export default function Login({ currentUser, setCurrentUser }) {
 
 	return (
 		<div>
-			<h1>Login to Your Account:</h1>
-
+		<p className="new-post fs-2">Login to your account</p>
+		<div className="post-container d-flex justify-content-center">
+			
 			<p>{msg}</p>
+			   <form onSubmit={handleSubmit}>
+			  <Form.Group  className="mb-3" controlId="formBasicEmail">
+				<Form.Label>Email address</Form.Label>
+			  	<Form.Control
+				type="email"
+				id="email"
+				placeholder='your email...'
+				onChange={e => setEmail(e.target.value)}
+				value={email} />
+			</Form.Group>
 
-			<form onSubmit={handleSubmit}>
-				<label htmlFor='email'>Email:</label>
-				<input 
-					type="email"
-					id="email"
-					placeholder='your email...'
-					onChange={e => setEmail(e.target.value)}
-					value={email}
-				/>
+			<Form.Group className="mb-3" controlId="formBasicPassword">
+				<Form.Label>Password</Form.Label>
+			    <Form.Control
+				type="password"
+				id="password"
+				placeholder='password...'
+				onChange={e => setPassword(e.target.value)}
+				value={password} />
 
-				<label htmlFor='password'>Password:</label>
-				<input 
-					type="password"
-					id="password"
-					placeholder='password...'
-					onChange={e => setPassword(e.target.value)}
-					value={password}
-				/>
-
-				<button type="submit">Login</button>
-			</form>
+			</Form.Group>
+			<Button variant="outline-light" type="submit" size="lg" style={{ backgroundColor: 'rgb(0, 68, 129)' }}>Login</Button>
+			  </form> 
+		</div>
 		</div>
 	)
 }
