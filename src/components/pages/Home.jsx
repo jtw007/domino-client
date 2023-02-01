@@ -30,7 +30,7 @@ export default function Home() {
 							by: {post.user.name}
 						</Card.Text>
 						<Link to={`/post/${post._id}`}>
-						<Button variant="primary">See Post</Button>
+						<Button variant="outline-light" type="submit" size="md" style={{ backgroundColor: 'rgb(0, 68, 129)' }}>See Post</Button>
 						</Link> 
 					</Card.Body>
 				</Card>
