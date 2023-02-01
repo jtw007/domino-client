@@ -8,17 +8,10 @@ import EditPost from "./PostEdit"
 
 export default function PostDetails({currentUser}) { 
     const [post, setPost] = useState([])
-    // const [comments, setComments] = useState([])
-
-// const [comments, setComments] = useState([])
 
     const [form, setForm] = useState({
         content: '',
         user: ''
-    })
-
-    const [editComment, setEditComment] = useState({
-        content: ''
     })
     const {id} = useParams()
     const fetchPost = async () =>{
@@ -62,28 +55,6 @@ export default function PostDetails({currentUser}) {
        .catch(console.warn)
     }
 
-    // const handleEditClick = async (commentId) => {
-    //     // grabbing the comment by id and 'editing it' with axios
-    //     await axios.put(`${process.env.REACT_APP_SERVER_URL}/posts/${id}/comment/${commentId}`, editComment)
-    //     // calling fetchPost to 'refresh' the page (refresh might not be the right word but it's what happens in this case)
-    //     .then(response => {
-    //         fetchPost()
-    //     })
-    //     .catch(console.warn)
-    // }
-    // const editCommentForm = (
-    //     <div> 
-    //       <form onSubmit={handleEditClick}>
-    //           <label htmlFor='editComment'>Edit Comment:</label>
-    //           <textarea id='editComment' 
-    //           placeholder="Edit your Comment" 
-    //           value={form.content}  
-    //           onChange={e => setForm({ ...form, content: e.target.value, user:currentUser.id})}>
-    //           </textarea>
-    //           <button type='submit' >Submit</button>
-    //           </form>
-    //   </div>
-    //   )  
     const commentForm = (
         // calls handleSubmit function every time the user clicks on the submit button
         <form onSubmit={handleSubmit} htmlFor='comment'>
@@ -105,7 +76,6 @@ export default function PostDetails({currentUser}) {
  
     const commentComponents = post.comments?.map((comment, idx) => {
         // ? -> basically some conditional logic like an if else, but here we’re just checking if the post has a property comments
-        let ownComment = false
         const buttons = (
             <>
                 <button onClick={() => handleDeleteClick(comment._id)}>Delete</button>
@@ -149,6 +119,4 @@ export default function PostDetails({currentUser}) {
 //show name of user ✅
 // show comments (if no comment: display no comments yet) ✅
 // delete button for each comment (only shows for comments of that specific user) ✅
-// edit comment for each comment (only shows for comments of that specific user) ✅
-// area text that displays only when edit button is clicked
 // area text to make a new comment (if user is not logged in: take user to login page) ✅
