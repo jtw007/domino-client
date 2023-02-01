@@ -13,8 +13,8 @@ import Dropdown from 'react-bootstrap/Dropdown';
 export default function Footer() {
     return (
 
-    <MDBFooter bgColor='light' className='text-center fixed-bottom'>
-      <MDBContainer className='p-0 position-relative fixed-bottom' >
+    <MDBFooter bgColor='light' className='text-center'>
+      <MDBContainer className='p-0 position-relative' >
         <MDBRow>
 
           <MDBCol sm='0' md='6' className='mb-0 mb-sm-0'>
