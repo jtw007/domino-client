@@ -16,8 +16,8 @@ export default function Profile({ currentUser, handleLogout }) {
 	const generatePosts = posts.map((p, i) => {
 		return (
 	  			<div key={`post-${i}`}>
-					<Card class="w-75">
-						<Card.Header>{p.title}</Card.Header>
+					<Card className="w-75 mx-auto mt-4">
+						<Card.Header><strong>{p.title}</strong></Card.Header>
 						<Card.Body>
 							<Card.Text>
 							{p.content}
@@ -88,12 +88,13 @@ export default function Profile({ currentUser, handleLogout }) {
 	return (
 		<div>
 			<h1>Welcome Home Mc{currentUser?.name}</h1>
-
-			<p>your email is {currentUser?.email}</p>
+			<div>
+			<p >your email is {currentUser?.email}</p>
 			<button onClick={handleDelete}>Delete Your Account</button>
+			</div>
 
 			<div>
-				<h2>Your Posts:</h2>
+				<h2 className="mt-4">Your Posts:</h2>
 				{generatePosts}
 			</div>
 		</div>
