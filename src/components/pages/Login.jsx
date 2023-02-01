@@ -47,9 +47,10 @@ export default function Login({ currentUser, setCurrentUser }) {
 	}
 
 	return (
+		<div>
+		<p className="new-post fs-2">Login to your account</p>
 		<div className="post-container d-flex justify-content-center">
-			<h1>Login to Your Account:</h1>
-
+			
 			<p>{msg}</p>
 			   <form onSubmit={handleSubmit}>
 			  <Form.Group  className="mb-3" controlId="formBasicEmail">
@@ -72,8 +73,9 @@ export default function Login({ currentUser, setCurrentUser }) {
 				value={password} />
 
 			</Form.Group>
-			<Button variant="outline-info" type="submit" size="lg">Login</Button>
+			<Button variant="outline-light" type="submit" size="lg" style={{ backgroundColor: 'rgb(0, 68, 129)' }}>Login</Button>
 			  </form> 
+		</div>
 		</div>
 	)
 }
