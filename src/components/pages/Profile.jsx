@@ -6,6 +6,7 @@ import jwt_decode from 'jwt-decode'
 // sssss say snake
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
+import mcfacebook from '../../img/mcfacebook.png'
 
 
 export default function Profile({ currentUser, handleLogout }) {
@@ -16,7 +17,7 @@ export default function Profile({ currentUser, handleLogout }) {
 	const generatePosts = posts.map((p, i) => {
 		return (
 	  			<div key={`post-${i}`}>
-					<Card className="w-75 mx-auto mt-4">
+					<Card className="w-75 mx-auto mt-4" style={{}}>
 						<Card.Header><strong>{p.title}</strong></Card.Header>
 						<Card.Body>
 							<Card.Text>
@@ -87,13 +88,18 @@ export default function Profile({ currentUser, handleLogout }) {
 
 	return (
 		<div>
-			<h1>Welcome Home Mc{currentUser?.name}</h1>
-			<div>
-			<p >your email is {currentUser?.email}</p>
-			<button onClick={handleDelete}>Delete Your Account</button>
+			<div class="card bg-dark text-white mx-auto w-75" style={{height:"300px", backgroundColor:'blue'}}>
+  				<img class="card-img" src={mcfacebook} alt="Card image" style={{height:'100%'}}/>
+  				<div class="card-img-overlay">
+					<h5 class="card-title">Welcome Home Mc{currentUser?.name}</h5>
+					<p class="card-text">your email is {currentUser?.email}</p>
+  				</div>
 			</div>
+			
+			
+			
 
-			<div>
+			<div className="mt-4">
 				<h2 className="mt-4">Your Posts:</h2>
 				{generatePosts}
 			</div>
