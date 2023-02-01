@@ -3,6 +3,11 @@ import { useNavigate, Link } from 'react-router-dom'
 import axios from 'axios'
 import jwt_decode from 'jwt-decode'
 
+// sssss say snake
+import Button from 'react-bootstrap/Button';
+import Card from 'react-bootstrap/Card';
+
+
 export default function Profile({ currentUser, handleLogout }) {
 	// state for the secret message (aka user privilaged data)
 	const [msg, setMsg] = useState('')
@@ -12,8 +17,18 @@ export default function Profile({ currentUser, handleLogout }) {
 
 	const generatePosts = posts.map((p, i) => {
 		return (
-			<div key={`post-${i}`}>
-				<h3>{p.title}</h3>
+	  			<div key={`post-${i}`}>
+					<Card>
+						<Card.Header>{p.title}</Card.Header>
+						<Card.Body>
+							<Card.Text>
+							{p.content}
+							</Card.Text>
+							<Link to={`/post/${p._id}`}>
+        					<Button variant="primary">See Post</Button>
+							</Link> 
+      				</Card.Body>
+    			</Card>
 			</div>
 		)
 	})
@@ -76,7 +91,7 @@ export default function Profile({ currentUser, handleLogout }) {
 
 	return (
 		<div>
-			<h1>Hello, {currentUser?.name}</h1>
+			<h1>Welcome Home Mc{currentUser?.name}</h1>
 
 			<p>your email is {currentUser?.email}</p>
 			<button onClick={handleDelete}>Delete Your Account</button>
