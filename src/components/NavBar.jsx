@@ -10,7 +10,7 @@ export default function NavBar({ currentUser, handleLogout }) {
 		<>
 		{/* if the user is logged in... */}
 
-		<Navbar style={{ backgroundColor: 'rgba(0,68,129)' }} variant="dark" expand="xxl">
+		<Navbar style={{ backgroundColor: 'rgba(0,68,129)' }} variant="dark" expand="lg">
 			<Container>
 				<Navbar.Toggle aria-controls="basic-navbar-nav" />
 				<Navbar.Collapse id="basic-navbar-nav">
@@ -30,7 +30,7 @@ export default function NavBar({ currentUser, handleLogout }) {
 		<>
 			{/* if the user is not logged in... */}
 
-			<Navbar style={{ backgroundColor: 'rgba(0,68,129)' }} variant="dark" expand="xxl">
+			<Navbar style={{ backgroundColor: 'rgba(0,68,129)' }} variant="dark" expand="lg">
 			<Container>
 				<Navbar.Toggle aria-controls="basic-navbar-nav" />
 				<Navbar.Collapse id="basic-navbar-nav">
@@ -47,7 +47,7 @@ export default function NavBar({ currentUser, handleLogout }) {
 
 	return (
 
-		<Navbar className="mb-5" style={{ backgroundColor: 'rgba(0,68,129)' }} variant="dark" expand="lg">
+		<Navbar className="mb-0" style={{ backgroundColor: 'rgba(0,68,129)' }} variant="dark" expand="lg">
 			<Container>
 				<Navbar.Brand href="/">McFaceBook</Navbar.Brand>
 

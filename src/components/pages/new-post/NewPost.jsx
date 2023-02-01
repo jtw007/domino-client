@@ -77,7 +77,7 @@ export default function NewPost(){
 
                     </div> 
 
-                <Button variant="outline-info" type="submit" size="lg">Post</Button>
+                    <Button variant="outline-light" type="submit" size="lg" style={{ backgroundColor: 'rgb(0, 68, 129)' }}>Post</Button>
                 </div>
                     
 
