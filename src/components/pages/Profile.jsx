@@ -6,7 +6,7 @@ import jwt_decode from 'jwt-decode'
 // sssss say snake
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
-import mcfacebook from '../../img/mcfacebook.png'
+import mcfacebook from '../../img/something.png'
 
 
 export default function Profile({ currentUser, handleLogout }) {
@@ -88,11 +88,12 @@ export default function Profile({ currentUser, handleLogout }) {
 
 	return (
 		<div>
-			<div class="card bg-dark text-white mx-auto w-75" style={{height:"300px", backgroundColor:'blue'}}>
+			<div class="card bg-dark text-white mx-auto mt-4 w-75" style={{height:"180px", backgroundColor:'blue'}}>
   				<img class="card-img" src={mcfacebook} alt="Card image" style={{height:'100%'}}/>
   				<div class="card-img-overlay">
-					<h5 class="card-title">Welcome Home Mc{currentUser?.name}</h5>
-					<p class="card-text">your email is {currentUser?.email}</p>
+					<h5 class="card-title" style={{fontSize:'35px'}}>Welcome Home <span style={{color:'gold'}}>Mc</span>{currentUser?.name}</h5>
+					<p class="card-text">Your <span style={{color:'gold'}}>Mc</span>Mail: {currentUser?.email}</p>
+					<Button variant="outline-light" type="submit" size="md" style={{ backgroundColor: 'rgb(0, 68, 129)' }} onClick={handleDelete}>Delete your <span style={{color:'gold'}}>Mc</span>Count</Button>
   				</div>
 			</div>
 			
@@ -100,7 +101,7 @@ export default function Profile({ currentUser, handleLogout }) {
 			
 
 			<div className="mt-4">
-				<h2 className="mt-4">Your Posts:</h2>
+				<h2 className="mt-4">Your <span style={{color:'gold'}}>Mc</span>Posts:</h2>
 				{generatePosts}
 			</div>
 		</div>
