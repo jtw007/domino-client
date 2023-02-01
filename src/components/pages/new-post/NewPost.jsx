@@ -30,9 +30,11 @@ export default function NewPost(){
     const handleSubmit = (e) => {
         e.preventDefault()
         //adds user ID to form
-        setForm({ ...form, user: decoded.id })
+        // DONT UST SETFORM AND USE IT RIGHTAWAY SINCE IT TAKES A SECOND TO UPDATE USE COPY INSTEAD
+        // setForm({ ...form, user: decoded.id })
+        const formCopy = { ...form, user: decoded.id}
         // take form data from the state, post it to the backend with axios
-        axios.post(`${process.env.REACT_APP_SERVER_URL}/posts`, form)
+        axios.post(`${process.env.REACT_APP_SERVER_URL}/posts`, formCopy)
             .then(response => {
                 console.log(response.data)
                 //once backend gets back to use, navigate to the '/' (home route) to see all the posts
