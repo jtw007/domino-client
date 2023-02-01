@@ -11,7 +11,8 @@ export default function PostDetails({currentUser}) {
 
     const [form, setForm] = useState({
         content: '',
-        user: ''
+        user: '',
+        name: ''
     })
     const {id} = useParams()
     const fetchPost = async () =>{
@@ -63,7 +64,7 @@ export default function PostDetails({currentUser}) {
             <textarea id='comment' 
             placeholder="Make a new Comment" 
             value={form.content}  
-            onChange={e => setForm({ ...form, content: e.target.value, user:currentUser.id})}></textarea>
+            onChange={e => setForm({ ...form, content: e.target.value, user:currentUser.id, name:currentUser.name})}></textarea>
             <button type='submit' >Submit</button>
         </div>
         </form>
@@ -81,13 +82,14 @@ export default function PostDetails({currentUser}) {
                 <button onClick={() => handleDeleteClick(comment._id)}>Delete</button>
             </> 
         )
-        console.log(currentUser?.id, comment)
         
         return (
           <div key={`comment-${idx}`}>
               <div>
+                  <p>{comment.name} says:</p>
                   {comment.content}
                   {currentUser?.id === comment.user ? buttons : ''}
+                  
               </div>
           </div>
         )
