@@ -23,7 +23,7 @@ export default function Profile({ currentUser, handleLogout }) {
 							{p.content}
 							</Card.Text>
 							<Link to={`/post/${p._id}`}>
-        					<Button variant="primary">See Post</Button>
+        					<Button variant="outline-light" type="submit" size="md" style={{ backgroundColor: 'rgb(0, 68, 129)' }}>See Post</Button>
 							</Link> 
       				</Card.Body>
     			</Card>
@@ -90,7 +90,7 @@ export default function Profile({ currentUser, handleLogout }) {
 			<h1>Welcome Home Mc{currentUser?.name}</h1>
 			<div>
 			<p >your email is {currentUser?.email}</p>
-			<button onClick={handleDelete}>Delete Your Account</button>
+			<Button variant="outline-light" type="submit" size="md" style={{ backgroundColor: 'rgb(0, 68, 129)' }} onClick={handleDelete}>Delete your account</Button>
 			</div>
 
 			<div>
