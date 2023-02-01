@@ -1,6 +1,7 @@
 import { useState } from "react"
 import axios from 'axios'
 import { useParams, useNavigate } from 'react-router-dom'
+import { Button, Form, FormControl, FormLabel } from 'react-bootstrap'
 
 export default function EditPost({currentUser, post, fetchPost}) {
     const [edit, setEdit] = useState({
@@ -49,34 +50,46 @@ export default function EditPost({currentUser, post, fetchPost}) {
     )
 
     const editForm = (
-        <div>
+        <div className="post-container d-flex justify-content-center">
+
             <form onSubmit={handleEdit}>
-                <label htmlFor='title'>Title:</label>
-                <input 
-                    type='text'
-                    id='title'
-                    placeholder='title...'
-                    value={edit.title}
-                    onChange={e => setEdit({ ...edit, title: e.target.value })}
-                />
-                <label htmlFor='content'>Content:</label>
-                <input 
-                    type='text'
-                    id='content'
-                    placeholder='content...'
-                    value={edit.content}
-                    onChange={e => setEdit({ ...edit, content: e.target.value })}
-                />
-                <button type='submit'>Submit</button>
-                <button onClick={handleDelete}>Delete Post</button>
+                <div className="form-container" style={{ width: 300 }} >
+                    <div className="form-sheet">
+                        <Form.Group className="mb-1">
+                            <Form.Label></Form.Label>
+                            <FormControl
+                            type='text'
+                            id='title'
+                            placeholder='title...'
+                            value={edit.title}
+                            onChange={e => setEdit({ ...edit, title: e.target.value })}
+                            />
+                        </Form.Group>
+
+                        <Form.Group className="mb-3">
+                            <FormLabel></FormLabel>
+                            <FormControl
+                            type='text'
+                            id='content'
+                            placeholder='content...'
+                            value={edit.content}
+                            onChange={e => setEdit({ ...edit, content: e.target.value })}
+                            />
+                        </Form.Group>
+
+                    </div>
+                </div>
+                <Button variant="outline-light" type="submit" size="md" style={{ backgroundColor: 'rgb(0, 68, 129)' }}>submit</Button>
+                <Button onClick={handleDelete} variant="outline-light" type="submit" size="md" style={{ backgroundColor: 'rgb(0, 68, 129)' }}>Delete Post</Button>
+
             </form>
         </div>
     )
 
     return (
         <>
-            {show ? cancelbutton : editbutton}
             {show && editForm}
+            {show ? cancelbutton : editbutton}
         </>
     )
 }
