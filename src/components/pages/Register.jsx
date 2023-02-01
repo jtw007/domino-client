@@ -3,6 +3,11 @@ import axios from 'axios'
 import jwt_decode from 'jwt-decode'
 import { Navigate } from 'react-router-dom'
 
+// the cascading s s baby
+import Button from 'react-bootstrap/Button';
+import Form from 'react-bootstrap/Form';
+
+
 export default function Register({ currentUser, setCurrentUser }) {
 	// state for the controlled form
 	const [name, setName] = useState('')
@@ -47,40 +52,48 @@ export default function Register({ currentUser, setCurrentUser }) {
 
 	return (
 		<div>
-			<h1>Register for an account:</h1>
+		<p className="new-post fs-2 mt-5">Register Now</p>
+			<div>
+			<p className="new-post fs-4 mt-4" style={{color:'red'}}>{msg}</p>
+			</div>
+		<div className="post-container d-flex justify-content-center">
+			   <form onSubmit={handleSubmit}>
+			  <Form.Group  className="mb-3" controlId="formBasicEmail">
+				<Form.Label>Username</Form.Label>
+			  	<Form.Control
+				type="name"
+				id="name"
+				placeholder='steve...'
+				onChange={e => setName(e.target.value)}
+				value={name} />
+			</Form.Group>
 
-			<p>{msg}</p>
+			  <Form.Group  className="mb-3" controlId="formBasicEmail">
+				<Form.Label>Email address</Form.Label>
+			  	<Form.Control
+				type="email"
+				id="email"
+				placeholder='gmailuser@hotmail...'
+				onChange={e => setEmail(e.target.value)}
+				value={email} />
+			</Form.Group>
 
-			<form onSubmit={handleSubmit}>
-				<label htmlFor='name'>Name:</label>
-				<input 
-					type="text"
-					id="name"
-					placeholder='your username...'
-					onChange={e => setName(e.target.value)}
-					value={name}
-				/>
+			<Form.Group className="mb-3" controlId="formBasicPassword">
+				<Form.Label>Password</Form.Label>
+			    <Form.Control
+				type="password"
+				id="password"
+				placeholder='Hunter2...'
+				onChange={e => setPassword(e.target.value)}
+				value={password} />
 
-				<label htmlFor='email'>Email:</label>
-				<input 
-					type="email"
-					id="email"
-					placeholder='your email...'
-					onChange={e => setEmail(e.target.value)}
-					value={email}
-				/>
-
-				<label htmlFor='password'>Password:</label>
-				<input 
-					type="password"
-					id="password"
-					placeholder='password...'
-					onChange={e => setPassword(e.target.value)}
-					value={password}
-				/>
-
-				<button type="submit">Register</button>
-			</form>
+			</Form.Group>
+			<Button variant="outline-light" type="submit" size="md" style={{ backgroundColor: 'rgb(0, 68, 129)' }}>Login</Button>
+			  </form> 
+		
+		
 		</div>
+		</div>
+
 	)
 }
