@@ -11,9 +11,10 @@ import Dropdown from 'react-bootstrap/Dropdown';
 
 // Daniel ________________________________________
 export default function Footer() {
+
     return (
 
-    <MDBFooter style={{ backgroundColor: 'rgba(255, 255, 255)', maxHeight: '300px' }} className='text-center fixed-bottom hover-shadow shadow-1-strong'>
+    <MDBFooter style={{ backgroundColor: 'rgba(255, 255, 255)',  }} className='text-center fixed-bottom hover-shadow shadow-1-strong'>
       <MDBContainer className='p-0 position-relative fixed-bottom' >
         <MDBRow>
 
