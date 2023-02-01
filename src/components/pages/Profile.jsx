@@ -9,8 +9,6 @@ import Card from 'react-bootstrap/Card';
 
 
 export default function Profile({ currentUser, handleLogout }) {
-	// state for the secret message (aka user privilaged data)
-	const [msg, setMsg] = useState('')
 	const [posts, setPosts] = useState([])
 	
 	const navigate = useNavigate()
@@ -18,7 +16,7 @@ export default function Profile({ currentUser, handleLogout }) {
 	const generatePosts = posts.map((p, i) => {
 		return (
 	  			<div key={`post-${i}`}>
-					<Card>
+					<Card class="w-75">
 						<Card.Header>{p.title}</Card.Header>
 						<Card.Body>
 							<Card.Text>
@@ -60,9 +58,7 @@ export default function Profile({ currentUser, handleLogout }) {
 					const response = await axios.get(`${process.env.REACT_APP_SERVER_URL}/api-v1/users/auth-locked`, options)
 					// example POST with auth headers (options are always last argument)
 					// await axios.post(url, requestBody (form data), options)
-					// set the secret user message in state
-					setMsg(response.data.msg)
-					
+					// console.log(response.data)
 					// decode the jwt token for funzies
 					const decoded = jwt_decode(token)
 					console.log(decoded.id)
