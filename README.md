@@ -1,4 +1,4 @@
-# InstaKing
+# McFaceBook
 
 ## Authors
 * Daniel Park 
@@ -7,7 +7,7 @@
 * Theo Robinson 
 
 ## Project Pitch and description 
-The year is 2023 and to some people's surprise, Twitter died. In its place, a new social media has sprung up. InstaKing is a blog-style social media app that lets users post their thoughts and commenters can wage flame wars against each other in the comment sections (if it exists 🤫). 
+The year is 2023 and to some people's surprise, Twitter died. In its place, a new social media has sprung up. McFaceBook is a blog-style social media app that lets users post their thoughts and commenters can wage flame wars against each other in the comment sections (if it exists 🤫). 
 
 ## ERD 
 ![Model](/screenshots/ERD.png)
