@@ -34,7 +34,7 @@ export default function Home() {
 
 	return (
 		<div>
-			<h1>Insta-King</h1>
+			<h1 className="home-text" style={{ color: 'rgba(0,68,129)' }}>McFaceBook</h1>
 			{postComponents}
 		</div>
 	)

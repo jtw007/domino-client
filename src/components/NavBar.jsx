@@ -49,7 +49,7 @@ export default function NavBar({ currentUser, handleLogout }) {
 
 		<Navbar className="mb-5" style={{ backgroundColor: 'rgba(0,68,129)' }} variant="dark" expand="lg">
 			<Container>
-				<Navbar.Brand href="/">InstaKing</Navbar.Brand>
+				<Navbar.Brand href="/">McFaceBook</Navbar.Brand>
 
 				{currentUser ? loggedIn : loggedOut}
 			</Container>
