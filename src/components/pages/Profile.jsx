@@ -3,17 +3,30 @@ import { useNavigate, Link } from 'react-router-dom'
 import axios from 'axios'
 import jwt_decode from 'jwt-decode'
 
+// sssss say snake
+import Button from 'react-bootstrap/Button';
+import Card from 'react-bootstrap/Card';
+
+
 export default function Profile({ currentUser, handleLogout }) {
-	// state for the secret message (aka user privilaged data)
-	const [msg, setMsg] = useState('')
 	const [posts, setPosts] = useState([])
 	
 	const navigate = useNavigate()
 
 	const generatePosts = posts.map((p, i) => {
 		return (
-			<div key={`post-${i}`}>
-				<h3>{p.title}</h3>
+	  			<div key={`post-${i}`}>
+					<Card className="w-75 mx-auto mt-4">
+						<Card.Header><strong>{p.title}</strong></Card.Header>
+						<Card.Body>
+							<Card.Text>
+							{p.content}
+							</Card.Text>
+							<Link to={`/post/${p._id}`}>
+        					<Button variant="primary">See Post</Button>
+							</Link> 
+      				</Card.Body>
+    			</Card>
 			</div>
 		)
 	})
@@ -45,9 +58,7 @@ export default function Profile({ currentUser, handleLogout }) {
 					const response = await axios.get(`${process.env.REACT_APP_SERVER_URL}/api-v1/users/auth-locked`, options)
 					// example POST with auth headers (options are always last argument)
 					// await axios.post(url, requestBody (form data), options)
-					// set the secret user message in state
-					setMsg(response.data.msg)
-					
+					// console.log(response.data)
 					// decode the jwt token for funzies
 					const decoded = jwt_decode(token)
 					console.log(decoded.id)
@@ -76,13 +87,14 @@ export default function Profile({ currentUser, handleLogout }) {
 
 	return (
 		<div>
-			<h1>Hello, {currentUser?.name}</h1>
-
-			<p>your email is {currentUser?.email}</p>
+			<h1>Welcome Home Mc{currentUser?.name}</h1>
+			<div>
+			<p >your email is {currentUser?.email}</p>
 			<button onClick={handleDelete}>Delete Your Account</button>
+			</div>
 
 			<div>
-				<h2>Your Posts:</h2>
+				<h2 className="mt-4">Your Posts:</h2>
 				{generatePosts}
 			</div>
 		</div>
