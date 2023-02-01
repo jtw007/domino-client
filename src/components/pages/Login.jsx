@@ -73,7 +73,7 @@ export default function Login({ currentUser, setCurrentUser }) {
 				value={password} />
 
 			</Form.Group>
-			<Button variant="outline-light" type="submit" size="lg" style={{ backgroundColor: 'rgb(0, 68, 129)' }}>Login</Button>
+			<Button variant="outline-light" type="submit" size="md" style={{ backgroundColor: 'rgb(0, 68, 129)' }}>Login</Button>
 			  </form> 
 		</div>
 		</div>
