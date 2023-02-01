@@ -3,20 +3,12 @@ import axios from "axios"
 import {useState, useEffect} from 'react'
 import { useParams } from "react-router-dom"
 import { useNavigate, Navigate } from "react-router-dom"
+import EditPost from "./PostEdit"
 
 
 export default function PostDetails({currentUser}) { 
     const [post, setPost] = useState([])
     // const [comments, setComments] = useState([])
-    
-    // Daniel ________________________________________
-    // const [show, setShow] = useState(false)
-    const [edit, setEdit] = useState({
-        title: '',
-        content: ''
-    })
-    
-    // _____________________________________________DP
 
 // const [comments, setComments] = useState([])
 
@@ -107,28 +99,9 @@ export default function PostDetails({currentUser}) {
     )
     
     // Daniel ________________________________________
-    const handleEdit = async e => {
-        e.preventDefault()
-        try {
-            setEdit({ ...form, user: currentUser.id })
-            await axios.put(`${process.env.REACT_APP_SERVER_URL}/posts/${id}`, edit)
-            const response = await axios.get(`${process.env.REACT_APP_SERVER_URL}/posts/`)
-            console.log(response.data)
-        } catch(err) {
-            console.warn(err)
-        }
-    }
-
-    const handleDelete = async () => {
-        try {
-            await axios.delete(`${process.env.REACT_APP_SERVER_URL}/posts/${id}`)
-            navigate('/')
-        } catch(err) {
-            console.warn(err)
-        }
-    }
+    const showEdit = <EditPost currentUser={currentUser} post={post} fetchPost={fetchPost} />
+    
     // _____________________________________________DP
-
  
     const commentComponents = post.comments?.map((comment, idx) => {
         // ? -> basically some conditional logic like an if else, but here we’re just checking if the post has a property comments
@@ -153,6 +126,12 @@ export default function PostDetails({currentUser}) {
         <>
         <h2>{post.title}</h2>
         <div>{post.content}
+        {/* // Daniel ________________________________________ */}
+        <div>
+            {currentUser?.id === post.user?._id && showEdit}    
+        </div>
+        {/* // _____________________________________________DP */}
+        
         <p>{post.user?.name}</p> </div>
          <div>
              <h3>Comments:</h3>
@@ -160,36 +139,6 @@ export default function PostDetails({currentUser}) {
         </div>  
        {currentUser && commentForm}
             
-            {/* // Daniel ________________________________________ */}
-            <div>
-                <form onSubmit={handleEdit}>
-                    <lable htmlFor='title'>Title:</lable>
-                    <input 
-                        type='text'
-                        id='title'
-                        placeholder='title...'
-                        value={edit.title}
-                        onChange={e => setEdit({ ...edit, title: e.target.value })}
-                    />
-                    <lable htmlFor='content'>Content:</lable>
-                    <input 
-                        type='text'
-                        id='content'
-                        placeholder='content...'
-                        value={edit.content}
-                        onChange={e => setEdit({ ...edit, content: e.target.value })}
-                    />
-                    <button type='submit'>
-                    Edit
-                    </button>
-                </form>
-                <button onClick={handleDelete}>Delete</button>
-            </div>
-
-
-            
-
-            {/* // _____________________________________________DP */}
 
     </>
     )

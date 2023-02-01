@@ -7,15 +7,15 @@ export default function Home() {
 	const [posts, setPosts] = useState([])
 	// const [detailPage, setDetailPage] = useState('')
 	
-	useEffect (() => {
-		const fetchPosts = async () => {
-			try {
-				const response = await axios.get(`${process.env.REACT_APP_SERVER_URL}/posts`)
-				setPosts(response.data)
-			} catch (err) {
-				console.warn(err)
-			}
+	const fetchPosts = async () => {
+		try {
+			const response = await axios.get(`${process.env.REACT_APP_SERVER_URL}/posts`)
+			setPosts(response.data)
+		} catch (err) {
+			console.warn(err)
 		}
+	}
+	useEffect (() => {
 		fetchPosts()
 	}, [])
 	
