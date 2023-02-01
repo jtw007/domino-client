@@ -90,9 +90,9 @@ export default function PostDetails({currentUser}) {
         return (
           <div key={`comment-${idx}`}>
               <div>
-                  {comment.name} says: <span>{comment.content}</span>
-                  {currentUser?.id === comment.user ? buttons : ''}
+                 <span> {comment.name} says: <p>{comment.content}</p></span>
               </div>
+            {currentUser?.id === comment.user ? buttons : ''}
           </div>
         )
       })
