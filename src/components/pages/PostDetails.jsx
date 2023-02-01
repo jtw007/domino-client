@@ -80,17 +80,18 @@ export default function PostDetails({currentUser}) {
         // ? -> basically some conditional logic like an if else, but here we’re just checking if the post has a property comments
         const buttons = (
             <>
-                <button onClick={() => handleDeleteClick(comment._id)}>Delete</button>
+                <div>
+                    <Button variant="outline-light" size="md" style={{ backgroundColor: 'rgb(0, 68, 129)' }} onClick={() => handleDeleteClick(comment._id)}>Delete</Button>
+                </div>
+                
             </> 
         )
         
         return (
           <div key={`comment-${idx}`}>
               <div>
-                  <p>{comment.name} says:</p>
-                  {comment.content}
+                  <p>{comment.name} says:{comment.content}</p>
                   {currentUser?.id === comment.user ? buttons : ''}
-                  
               </div>
           </div>
         )
@@ -118,8 +119,12 @@ export default function PostDetails({currentUser}) {
         </div>
 
         <div>
-             <h3>Comments:</h3>
-            {commentComponents}   
+        <h3>Comments:</h3>
+        <Card className="w-75 mx-auto mt-4">
+            <Card.Body>{commentComponents} </Card.Body>
+        </Card>
+    
+              
         </div>  
        {currentUser && commentForm}
             
