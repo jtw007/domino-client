@@ -50,7 +50,8 @@ function App() {
   }
     
   return (
-    <Router>
+    <body className='the-body d-flex flex-column min-vh-100 m-auto'>
+      <Router>
       
       <header>
         <NavBar 
@@ -102,11 +103,13 @@ function App() {
 
       </div>
 
-      <footer>
+      <footer className='mt-auto'>
         <Footer />
       </footer>
 
     </Router>
+    </body>
+    
   );
 }
 
