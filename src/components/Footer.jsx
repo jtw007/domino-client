@@ -4,6 +4,8 @@ import {
     MDBCol,
     MDBRow
   } from 'mdb-react-ui-kit';
+import Dropdown from 'react-bootstrap/Dropdown';
+
 
 //npm i mdb-react-ui-kit to use imported components 
 
@@ -11,12 +13,23 @@ import {
 export default function Footer() {
     return (
 
-    <MDBFooter bgColor='light' className='text-center text-lg-left fixed-bottom '>
-      <MDBContainer className='p-2 position-relative fixed-bottom '>
+    <MDBFooter bgColor='light' className='text-center fixed-bottom'>
+      <MDBContainer className='p-0 position-relative fixed-bottom' >
         <MDBRow>
-          <MDBCol lg='3' md='6' className='mb-4 mb-md-0'>
-            <h5 className='text-uppercase'>Daniel Park</h5>
 
+          <MDBCol sm='0' md='6' className='mb-0 mb-sm-0'>
+            <Dropdown>
+                <Dropdown.Toggle variant="btn-outline" id="dropdown-basic">
+                    Daniel Park
+                </Dropdown.Toggle>
+
+                <Dropdown.Menu>
+                    <Dropdown.Item href='https://github.com/PvrkFvmily' target="_blank">Github</Dropdown.Item>
+                    <Dropdown.Item href='https://www.linkedin.com/in/parkfamily/' target="_blank">LinkedIn</Dropdown.Item>
+                </Dropdown.Menu>
+            </Dropdown>
+
+            {/* <h5 className='text-uppercase'>Daniel Park</h5> 
             <ul className='list-unstyled mb-0'>
               <li>
                 <a href='https://github.com/PvrkFvmily' target="_blank" style={{textDecoration:"none"}}  className='text-dark'>
@@ -30,11 +43,22 @@ export default function Footer() {
                 </a>
               </li>
               
-            </ul>
+            </ul> */}
           </MDBCol>
 
-          <MDBCol lg='3' md='6' className='mb-4 mb-md-0'>
-            <h5 className='text-uppercase mb-0'>Josh Wu</h5>
+          <MDBCol sm='0' md='6' className='mb-0 mb-sm-0'>
+            <Dropdown>
+                <Dropdown.Toggle variant="btn-outline" id="dropdown-basic">
+                    Josh Wu
+                </Dropdown.Toggle>
+
+                <Dropdown.Menu>
+                    <Dropdown.Item href='https://github.com/jtw007' target="_blank">Github</Dropdown.Item>
+                    <Dropdown.Item href='https://www.linkedin.com/in/joshuatwudev/' target="_blank">LinkedIn</Dropdown.Item>
+                </Dropdown.Menu>
+            </Dropdown>
+
+            {/* <h5 className='text-uppercase mb-0'>Josh Wu</h5>
 
             <ul className='list-unstyled'>
               <li>
@@ -49,11 +73,22 @@ export default function Footer() {
                 </a>
               </li>
               
-            </ul>
+            </ul> */}
           </MDBCol>
 
-          <MDBCol lg='3' md='6' className='mb-4 mb-md-0'>
-            <h5 className='text-uppercase'>Maria Hamilton</h5>
+          <MDBCol sm='0' md='6' className='mb-0 mb-sm-0'>
+            <Dropdown>
+                <Dropdown.Toggle variant="btn-outline" id="dropdown-basic">
+                    Maria Hamilton 
+                </Dropdown.Toggle>
+
+                <Dropdown.Menu>
+                    <Dropdown.Item href='https://github.com/dudahamilton' target="_blank">Github</Dropdown.Item>
+                    <Dropdown.Item href='https://www.linkedin.com/in/mariahamiltondev/' target="_blank">LinkedIn</Dropdown.Item>
+                </Dropdown.Menu>
+            </Dropdown>
+
+            {/* <h5 className='text-uppercase'>Maria Hamilton</h5>
 
             <ul className='list-unstyled mb-0'>
               <li>
@@ -68,11 +103,22 @@ export default function Footer() {
                 </a>
               </li>
             
-            </ul>
+            </ul> */}
           </MDBCol>
 
-          <MDBCol lg='3' md='6' className='mb-4 mb-md-0'>
-            <h5 className='text-uppercase mb-0'>Theo Robinson</h5>
+          <MDBCol sm='0' md='6' className='mb-0 mb-sm-0'>
+            <Dropdown>
+                <Dropdown.Toggle variant="btn-outline" id="dropdown-basic">
+                    Theo Robinson
+                </Dropdown.Toggle>
+
+                <Dropdown.Menu>
+                    <Dropdown.Item href='https://github.com/tbfrobinson' target="_blank">Github</Dropdown.Item>
+                    <Dropdown.Item href='https://www.linkedin.com/in/tbfrobinson/' target="_blank">LinkedIn</Dropdown.Item>
+                </Dropdown.Menu>
+            </Dropdown>
+
+            {/* <h5 className='text-uppercase mb-0'>Theo Robinson</h5>
 
             <ul className='list-unstyled'>
               <li>
@@ -87,12 +133,12 @@ export default function Footer() {
                 </a>
               </li>
             
-            </ul>
+            </ul> */}
           </MDBCol>
         </MDBRow>
       </MDBContainer>
 
-      <div className='text-center p-3 text-light' style={{ backgroundColor: 'rgba(0,68,129)' }}>
+      <div className='text-center p-2 text-light' style={{ backgroundColor: 'rgba(0,68,129)' }}>
         &copy; {new Date().getFullYear()} Copyright:{' '}
         <a className='btn btn-outline-primary text-light' target="_blank" href='https://media.tenor.com/3kPGZrOLeiUAAAAi/pepe-the-frog-dancing.gif'>
           Domino Team 
