@@ -105,9 +105,9 @@ export default function PostDetails({currentUser}) {
 					<Card.Header><strong><h3>{post.title}</h3></strong></Card.Header>
         <Card.Body>
 
-            <Card.Text>
+            
                 {/* if user is logged in and posted display his name on the post */}
-                <p>By: {post.user?.name}</p> 
+                By: {post.user?.name} 
                 <div>{post.content}</div>
                 <div>
                 {/* // Daniel ________________________________________ */}
@@ -115,7 +115,7 @@ export default function PostDetails({currentUser}) {
                 </div>
                 {/* // _____________________________________________DP */}
                 <Card.Header><strong><h3>Comments:</h3></strong></Card.Header>
-			</Card.Text>
+			
             {commentComponents}
 		</Card.Body>			
         </Card>
