@@ -5,7 +5,6 @@ import { useParams } from "react-router-dom"
 import { useNavigate} from "react-router-dom"
 import EditPost from "./PostEdit"
 import { Card, Button } from 'react-bootstrap'
-import FloatingLabel from 'react-bootstrap/FloatingLabel';
 import Form from 'react-bootstrap/Form';
 
 
@@ -39,19 +38,17 @@ export default function PostDetails({currentUser}) {
         setForm({ ...form, user: currentUser.id})
         axios.post(`${process.env.REACT_APP_SERVER_URL}/posts/${id}/comments`, form)
             .then(response => {
-                navigate(`/post/${id}`)
+                setForm({...form, content:''})
+                fetchPost()
             })
             .catch(console.warn) 
-        setForm({...form, content:''})
-        fetchPost()
-        console.log(form)
-        console.log(currentUser)
+        
     }
 
     const handleDeleteClick = async (commentId) => {
         // grabbing the post by comment id and deleting it through axios
         await axios.delete(`${process.env.REACT_APP_SERVER_URL}/posts/${id}/comment/${commentId}`)
-            
+        // calling fetchPost to refresh the page (without the deleted comment)
         .then(response => {
             fetchPost()
          })
@@ -63,6 +60,7 @@ export default function PostDetails({currentUser}) {
         // calls handleSubmit function every time the user clicks on the submit button
         <form onSubmit={handleSubmit} htmlFor='comment'>
         <div> 
+            {/* text area for creating new comment */}
             <label htmlFor="comment"></label>
             <Form.Control className="w-25 mx-auto mt-2" as="textarea" id='comment' 
             placeholder="Make a new Comment" 
@@ -82,20 +80,24 @@ export default function PostDetails({currentUser}) {
         // ? -> basically some conditional logic like an if else, but here we’re just checking if the post has a property comments
         const buttons = (
             <>
-                <div>
-                    <Button variant="outline-light" size="md" style={{ backgroundColor: 'rgb(0, 68, 129)' }} onClick={() => handleDeleteClick(comment._id)}>Delete</Button>
+                 {/* // putting my delete button in a variable so I can call on it if current user is the same as the one who wrote the comment */}
+                <div> 
+                    {/* everytime the delete button is clicked the handleDelereClick function is called */}
+                    <Button variant="outline-light" size="sm" style={{ backgroundColor: 'rgb(0, 68, 129)' }} onClick={() => handleDeleteClick(comment._id)}>Delete</Button>
                 </div>
                 
             </> 
         )
         
         return (
-          <div key={`comment-${idx}`}>
-              {comment.name} says: <div>{comment.content} <span>{currentUser?.id === comment.user ? buttons : ''} </span></div>
-                 
-          </div>
+            <div key={`comment-${idx}`} style={{display:"flex", justifyContent:'center'}}>
+                {/* grabbing user name and content from db */}
+                <div>{comment.name} says: {comment.content}</div>
+                {/* if the logged in user is the same as the one who wrote the comment the delete button will display */}
+                {currentUser?.id === comment.user ? buttons : ''}
+            </div>
         )
-      })
+    })
     return (
         <>
         <div>
@@ -104,6 +106,7 @@ export default function PostDetails({currentUser}) {
         <Card.Body>
 
             <Card.Text>
+                {/* if user is logged in and posted display his name on the post */}
                 <p>By: {post.user?.name}</p> 
                 <div>{post.content}</div>
                 <div>
@@ -118,11 +121,8 @@ export default function PostDetails({currentUser}) {
         </Card>
         
         </div>
-
-    
+        {/* short cut for (if user is logged in call commentForm(text area to make new comment)) */}
        {currentUser && commentForm}
-            
-
     </>
     )
     
