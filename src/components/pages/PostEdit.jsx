@@ -39,13 +39,13 @@ export default function EditPost({currentUser, post, fetchPost}) {
 
     const editbutton = (
         <>
-            <Button variant="outline-light" type="submit" size="md" style={{ backgroundColor: 'rgb(0, 68, 129)' }} onClick={() => handleShowForm(id)}>Edit Post</Button>
+            <Button className="mt-3" variant="outline-light" type="submit" size="md" style={{ backgroundColor: 'rgb(0, 68, 129)' }} onClick={() => handleShowForm(id)}>Edit Post</Button>
         </>
     )
 
     const cancelbutton = (
         <>
-            <Button variant="outline-light" type="submit" size="md" style={{ backgroundColor: 'rgb(0, 68, 129)' }} onClick={() => handleShowForm(id)}>Cancel</Button>
+            <Button className="mt-2" variant="outline-light" type="submit" size="md" style={{ backgroundColor: 'rgb(0, 68, 129)' }} onClick={() => handleShowForm(id)}>Cancel</Button>
         </>
     )
 
