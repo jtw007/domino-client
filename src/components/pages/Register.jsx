@@ -52,7 +52,7 @@ export default function Register({ currentUser, setCurrentUser }) {
 
 	return (
 		<div>
-		<p className="new-post fs-2 mt-5">Register Now</p>
+		<p className="new-post fs-2 mt-5" style={{ color: 'rgba(0,68,129)' }}>Register Now</p>
 			<div>
 			<p className="new-post fs-4 mt-4" style={{color:'red'}}>{msg}</p>
 			</div>
@@ -63,7 +63,7 @@ export default function Register({ currentUser, setCurrentUser }) {
 			  	<Form.Control
 				type="name"
 				id="name"
-				placeholder='steve...'
+				placeholder='Username'
 				onChange={e => setName(e.target.value)}
 				value={name} />
 			</Form.Group>
@@ -73,7 +73,7 @@ export default function Register({ currentUser, setCurrentUser }) {
 			  	<Form.Control
 				type="email"
 				id="email"
-				placeholder='gmailuser@hotmail...'
+				placeholder='Email'
 				onChange={e => setEmail(e.target.value)}
 				value={email} />
 			</Form.Group>
@@ -83,12 +83,12 @@ export default function Register({ currentUser, setCurrentUser }) {
 			    <Form.Control
 				type="password"
 				id="password"
-				placeholder='Hunter2...'
+				placeholder='Password'
 				onChange={e => setPassword(e.target.value)}
 				value={password} />
 
 			</Form.Group>
-			<Button variant="outline-light" type="submit" size="md" style={{ backgroundColor: 'rgb(0, 68, 129)' }}>Login</Button>
+			<Button variant="outline-light" type="submit" size="md" style={{ backgroundColor: 'rgb(0, 68, 129)' }}>Sign Up</Button>
 			  </form> 
 		
 		
