@@ -48,7 +48,7 @@ export default function Login({ currentUser, setCurrentUser }) {
 
 	return (
 		<div>
-		<p className="new-post fs-2">Login to your account</p>
+		<p className="new-post fs-2" style={{ color: 'rgba(0,68,129)' }}>Login to your account</p>
 		<div className="post-container d-flex justify-content-center">
 			
 			<p>{msg}</p>

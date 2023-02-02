@@ -141,7 +141,7 @@ export default function Footer() {
 
       <div className='text-center p-2 text-light' style={{ backgroundColor: 'rgba(0,68,129)' }}>
         &copy; {new Date().getFullYear()} Copyright:{' '}
-        <a className='btn btn-outline-primary text-light' target="_blank" href='https://media.tenor.com/3kPGZrOLeiUAAAAi/pepe-the-frog-dancing.gif'>
+        <a className='btn btn-outline-primary text-light' target="_blank" rel="noopener noreferrer" href='https://media.tenor.com/admZGSn7ebgAAAAd/sad-dance.gif'>
           Domino Team 
         </a>
       </div>
