@@ -51,7 +51,7 @@ function App() {
   }
     
   return (
-    <body className='the-body d-flex flex-column min-vh-100 m-auto'>
+    <div className='the-body d-flex flex-column min-vh-100 m-auto'>
       <Router>
       
       <header>
@@ -109,7 +109,7 @@ function App() {
       </footer>
 
     </Router>
-    </body>
+    </div>
     
   );
 }
