@@ -20,6 +20,7 @@ export default function PostDetails({currentUser}) {
     const fetchPost = async () =>{
         //Grabbing the post by the id
         try {
+            // setting url
             const response = await axios.get(`${process.env.REACT_APP_SERVER_URL}/posts/${id}`)
             setPost(response.data)
         } catch (err) {
@@ -39,7 +40,9 @@ export default function PostDetails({currentUser}) {
         //creating new comment
         axios.post(`${process.env.REACT_APP_SERVER_URL}/posts/${id}/comments`, form)
             .then(response => {
+                //putting content from text are in the db and rendering on the page
                 setForm({...form, content:''})
+                //restarting the page with the new comment
                 fetchPost()
             })
             .catch(console.warn) 
