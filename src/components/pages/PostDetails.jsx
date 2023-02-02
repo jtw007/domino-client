@@ -36,6 +36,7 @@ export default function PostDetails({currentUser}) {
     const handleSubmit = (e) => {
         e.preventDefault()
         setForm({ ...form, user: currentUser.id})
+        //creating new comment
         axios.post(`${process.env.REACT_APP_SERVER_URL}/posts/${id}/comments`, form)
             .then(response => {
                 setForm({...form, content:''})
