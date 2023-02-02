@@ -87,7 +87,7 @@ export default function PostDetails({currentUser}) {
                  {/* // putting my delete button in a variable so I can call on it if current user is the same as the one who wrote the comment */}
                 <div> 
                     {/* everytime the delete button is clicked the handleDelereClick function is called */}
-                    <Button variant="outline-light" size="sm" style={{ backgroundColor: 'rgb(0, 68, 129)' }} onClick={() => handleDeleteClick(comment._id)}>Delete</Button>
+                    <Button variant="outline-light" size="sm" style={{ backgroundColor: 'rgb(0, 68, 129)', margin:'10px' }} onClick={() => handleDeleteClick(comment._id)}>Delete</Button>
                 </div>
                 
             </> 
@@ -96,7 +96,7 @@ export default function PostDetails({currentUser}) {
         return (
             <div key={`comment-${idx}`} style={{display:"flex", justifyContent:'center'}}>
                 {/* grabbing user name and content from db */}
-                <div>{comment.name} says: {comment.content}</div>
+                <div style={{marginTop:'10px'}}>{comment.name} says: {comment.content}</div>
                 {/* if the logged in user is the same as the one who wrote the comment the delete button will display */}
                 {currentUser?.id === comment.user ? buttons : ''}
             </div>
