@@ -27,7 +27,7 @@ export default function Home() {
 					<Card.Header><strong><h3>{post.title}</h3></strong></Card.Header>
 					<Card.Body>
 						<Card.Text>
-							by: {post.user.name}
+							by: {post?.user?.name}
 						</Card.Text>
 						<Link to={`/post/${post._id}`}>
 						<Button variant="outline-light" type="submit" size="md" style={{ backgroundColor: 'rgb(0, 68, 129)' }}>See Post</Button>
