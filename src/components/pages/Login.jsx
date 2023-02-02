@@ -49,15 +49,15 @@ export default function Login({ currentUser, setCurrentUser }) {
 	return (
 		<div>
 		<p className="new-post fs-2" style={{ color: 'rgba(0,68,129)' }}>Login to your account</p>
+			<div>
+				<p className="new-post fs-4 mt-4" style={{color:'red'}}>{msg}</p>
+			</div>
 		<div className="post-container d-flex justify-content-center">
-			
-			<p>{msg}</p>
 			   <form onSubmit={handleSubmit}>
-			  <Form.Group  className="mb-3" controlId="formBasicEmail">
+			  	<Form.Group  className="mb-3" controlId="formBasicEmail">
 				<Form.Label>Email address</Form.Label>
 			  	<Form.Control
 				type="email"
-				id="email"
 				placeholder='your email...'
 				onChange={e => setEmail(e.target.value)}
 				value={email} />
@@ -67,7 +67,6 @@ export default function Login({ currentUser, setCurrentUser }) {
 				<Form.Label>Password</Form.Label>
 			    <Form.Control
 				type="password"
-				id="password"
 				placeholder='password...'
 				onChange={e => setPassword(e.target.value)}
 				value={password} />

@@ -2,28 +2,25 @@
 import axios from "axios"
 import {useState, useEffect} from 'react'
 import { useParams } from "react-router-dom"
-import { useNavigate, Navigate } from "react-router-dom"
+import { useNavigate} from "react-router-dom"
 import EditPost from "./PostEdit"
+import { Card, Button } from 'react-bootstrap'
+import Form from 'react-bootstrap/Form';
 
 
 export default function PostDetails({currentUser}) { 
     const [post, setPost] = useState([])
-    // const [comments, setComments] = useState([])
-
-// const [comments, setComments] = useState([])
 
     const [form, setForm] = useState({
         content: '',
-        user: ''
-    })
-
-    const [editComment, setEditComment] = useState({
-        content: ''
+        user: '',
+        name: ''
     })
     const {id} = useParams()
     const fetchPost = async () =>{
         //Grabbing the post by the id
         try {
+            // setting url
             const response = await axios.get(`${process.env.REACT_APP_SERVER_URL}/posts/${id}`)
             setPost(response.data)
         } catch (err) {
@@ -40,21 +37,22 @@ export default function PostDetails({currentUser}) {
     const handleSubmit = (e) => {
         e.preventDefault()
         setForm({ ...form, user: currentUser.id})
+        //creating new comment
         axios.post(`${process.env.REACT_APP_SERVER_URL}/posts/${id}/comments`, form)
             .then(response => {
-                navigate(`/post/${id}`)
+                //putting content from text are in the db and rendering on the page
+                setForm({...form, content:''})
+                //restarting the page with the new comment
+                fetchPost()
             })
             .catch(console.warn) 
-        setForm({...form, content:''})
-        fetchPost()
-        console.log(form)
-        console.log(currentUser)
+        
     }
 
     const handleDeleteClick = async (commentId) => {
         // grabbing the post by comment id and deleting it through axios
         await axios.delete(`${process.env.REACT_APP_SERVER_URL}/posts/${id}/comment/${commentId}`)
-            
+        // calling fetchPost to refresh the page (without the deleted comment)
         .then(response => {
             fetchPost()
          })
@@ -62,38 +60,17 @@ export default function PostDetails({currentUser}) {
        .catch(console.warn)
     }
 
-    // const handleEditClick = async (commentId) => {
-    //     // grabbing the comment by id and 'editing it' with axios
-    //     await axios.put(`${process.env.REACT_APP_SERVER_URL}/posts/${id}/comment/${commentId}`, editComment)
-    //     // calling fetchPost to 'refresh' the page (refresh might not be the right word but it's what happens in this case)
-    //     .then(response => {
-    //         fetchPost()
-    //     })
-    //     .catch(console.warn)
-    // }
-    // const editCommentForm = (
-    //     <div> 
-    //       <form onSubmit={handleEditClick}>
-    //           <label htmlFor='editComment'>Edit Comment:</label>
-    //           <textarea id='editComment' 
-    //           placeholder="Edit your Comment" 
-    //           value={form.content}  
-    //           onChange={e => setForm({ ...form, content: e.target.value, user:currentUser.id})}>
-    //           </textarea>
-    //           <button type='submit' >Submit</button>
-    //           </form>
-    //   </div>
-    //   )  
     const commentForm = (
         // calls handleSubmit function every time the user clicks on the submit button
         <form onSubmit={handleSubmit} htmlFor='comment'>
         <div> 
+            {/* text area for creating new comment */}
             <label htmlFor="comment"></label>
-            <textarea id='comment' 
+            <Form.Control className="w-25 mx-auto mt-2" as="textarea" id='comment' 
             placeholder="Make a new Comment" 
             value={form.content}  
-            onChange={e => setForm({ ...form, content: e.target.value, user:currentUser.id})}></textarea>
-            <button type='submit' >Submit</button>
+            onChange={e => setForm({ ...form, content: e.target.value, user:currentUser.id, name:currentUser.name})}></Form.Control>
+            <Button  className="mt-2"variant="outline-light" type="submit" size="md" style={{ backgroundColor: 'rgb(0, 68, 129)' }}>Submit</Button>
         </div>
         </form>
     )
@@ -105,41 +82,51 @@ export default function PostDetails({currentUser}) {
  
     const commentComponents = post.comments?.map((comment, idx) => {
         // ? -> basically some conditional logic like an if else, but here we’re just checking if the post has a property comments
-        let ownComment = false
         const buttons = (
             <>
-                <button onClick={() => handleDeleteClick(comment._id)}>Delete</button>
+                 {/* // putting my delete button in a variable so I can call on it if current user is the same as the one who wrote the comment */}
+                <div> 
+                    {/* everytime the delete button is clicked the handleDelereClick function is called */}
+                    <Button variant="outline-light" size="sm" style={{ backgroundColor: 'rgb(0, 68, 129)', margin:'10px' }} onClick={() => handleDeleteClick(comment._id)}>Delete</Button>
+                </div>
+                
             </> 
         )
-        console.log(currentUser?.id, comment)
         
         return (
-          <div key={`comment-${idx}`}>
-              <div>
-                  {comment.content}
-                  {currentUser?.id === comment.user ? buttons : ''}
-              </div>
-          </div>
+            <div key={`comment-${idx}`} style={{display:"flex", justifyContent:'center'}}>
+                {/* grabbing user name and content from db */}
+                <div style={{marginTop:'10px'}}>{comment.name} says: {comment.content}</div>
+                {/* if the logged in user is the same as the one who wrote the comment the delete button will display */}
+                {currentUser?.id === comment.user ? buttons : ''}
+            </div>
         )
-      })
+    })
     return (
         <>
-        <h2>{post.title}</h2>
-        <div>{post.content}
-        {/* // Daniel ________________________________________ */}
         <div>
-            {currentUser?.id === post.user?._id && showEdit}    
-        </div>
-        {/* // _____________________________________________DP */}
-        
-        <p>{post.user?.name}</p> </div>
-         <div>
-             <h3>Comments:</h3>
-            {commentComponents}   
-        </div>  
-       {currentUser && commentForm}
-            
+        <Card className="w-75 mx-auto mt-4">
+					<Card.Header><strong><h3>{post.title}</h3></strong></Card.Header>
+        <Card.Body>
 
+            
+                {/* if user is logged in and posted display his name on the post */}
+                By: {post.user?.name} 
+                <div>{post.content}</div>
+                <div>
+                {/* // Daniel ________________________________________ */}
+                {currentUser?.id === post.user?._id && showEdit}    
+                </div>
+                {/* // _____________________________________________DP */}
+                <Card.Header><strong><h3>Comments:</h3></strong></Card.Header>
+			
+            {commentComponents}
+		</Card.Body>			
+        </Card>
+        
+        </div>
+        {/* short cut for (if user is logged in call commentForm(text area to make new comment)) */}
+       {currentUser && commentForm}
     </>
     )
     
@@ -149,6 +136,4 @@ export default function PostDetails({currentUser}) {
 //show name of user ✅
 // show comments (if no comment: display no comments yet) ✅
 // delete button for each comment (only shows for comments of that specific user) ✅
-// edit comment for each comment (only shows for comments of that specific user) ✅
-// area text that displays only when edit button is clicked
 // area text to make a new comment (if user is not logged in: take user to login page) ✅
