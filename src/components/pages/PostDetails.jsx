@@ -32,7 +32,6 @@ export default function PostDetails({currentUser}) {
         fetchPost()
     }, [])
   
-    const navigate = useNavigate()
 
     const handleSubmit = (e) => {
         e.preventDefault()

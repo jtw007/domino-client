@@ -17,11 +17,14 @@
 ## Project Pitch and description 
 The year is 2023 and to some people's surprise, Twitter died. In its place, a new social media has sprung up. McFaceBook is a blog-style social media app that lets users post their thoughts and commenters can wage flame wars against each other in the comment sections (if it exists 🤫). 
 
+
 ## Approach
 ### Choosing a Project Idea
 On the day the project was assigned, we had a Google Doc that each team member added their ideas for what kind of app they wanted to create, along with what names they would want the app to be called. 
 ### Splitting the Work
-Originally, we had a difficult time trying to divide the work among all 4 members because our pitch needed to be resubmitted. However, once it was approved, it was easy to divide the work because we had been planning on the Miro board. 
+Originally, we had a difficult time trying to divide the work among all 4 members because our pitch needed to be resubmitted. However, once it was approved, it was easy to divide the work because we had been planning on the Miro board. Once we finished dividing the work, it went relatively smoothly for us. In the beginning, we had a few merge conflicts but we quickly learned how to avoid them and how to solve them as well. <br>
+We had to deal with a few errors that were a bit tricky, but we were able to overcome those with a lot of searching on Google, as well as some hints being dropped by the instructors. 
+
 
 ## Website Preview
 ![Model](/screenshots/website.png)
