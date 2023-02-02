@@ -88,11 +88,11 @@ export default function Profile({ currentUser, handleLogout }) {
 
 	return (
 		<div>
-			<div class="card bg-dark text-white mx-auto mt-4 w-75" style={{height:"180px", backgroundColor:'blue'}}>
-  				<img class="card-img" src={mcfacebook} alt="Card image" style={{height:'100%'}}/>
-  				<div class="card-img-overlay">
-					<h5 class="card-title" style={{fontSize:'35px'}}>Welcome Home <span style={{color:'gold'}}>Mc</span>{currentUser?.name}</h5>
-					<p class="card-text">Your <span style={{color:'gold'}}>Mc</span>Mail: {currentUser?.email}</p>
+			<div className="card bg-dark text-white mx-auto mt-4 w-75" style={{height:"180px", backgroundColor:'blue'}}>
+  				<img className="card-img" src={mcfacebook} alt="Card image" style={{height:'100%'}}/>
+  				<div className="card-img-overlay">
+					<h5 className="card-title" style={{fontSize:'35px'}}>Welcome Home <span style={{color:'gold'}}>Mc</span>{currentUser?.name}</h5>
+					<p className="card-text">Your <span style={{color:'gold'}}>Mc</span>Mail: {currentUser?.email}</p>
 					<Button variant="outline-light" type="submit" size="md" style={{ backgroundColor: 'rgb(0, 68, 129)' }} onClick={handleDelete}>Delete your <span style={{color:'gold'}}>Mc</span>Count</Button>
   				</div>
 			</div>
