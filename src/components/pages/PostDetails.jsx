@@ -2,9 +2,11 @@
 import axios from "axios"
 import {useState, useEffect} from 'react'
 import { useParams } from "react-router-dom"
-import { useNavigate, Navigate } from "react-router-dom"
+import { useNavigate} from "react-router-dom"
 import EditPost from "./PostEdit"
 import { Card, Button } from 'react-bootstrap'
+import FloatingLabel from 'react-bootstrap/FloatingLabel';
+import Form from 'react-bootstrap/Form';
 
 
 export default function PostDetails({currentUser}) { 
@@ -62,11 +64,11 @@ export default function PostDetails({currentUser}) {
         <form onSubmit={handleSubmit} htmlFor='comment'>
         <div> 
             <label htmlFor="comment"></label>
-            <textarea id='comment' 
+            <Form.Control className="w-25 mx-auto mt-2" as="textarea" id='comment' 
             placeholder="Make a new Comment" 
             value={form.content}  
-            onChange={e => setForm({ ...form, content: e.target.value, user:currentUser.id, name:currentUser.name})}></textarea>
-            <button type='submit' >Submit</button>
+            onChange={e => setForm({ ...form, content: e.target.value, user:currentUser.id, name:currentUser.name})}></Form.Control>
+            <Button  className="mt-2"variant="outline-light" type="submit" size="md" style={{ backgroundColor: 'rgb(0, 68, 129)' }}>Submit</Button>
         </div>
         </form>
     )
@@ -80,19 +82,17 @@ export default function PostDetails({currentUser}) {
         // ? -> basically some conditional logic like an if else, but here we’re just checking if the post has a property comments
         const buttons = (
             <>
-                <span>
+                <div>
                     <Button variant="outline-light" size="md" style={{ backgroundColor: 'rgb(0, 68, 129)' }} onClick={() => handleDeleteClick(comment._id)}>Delete</Button>
-                </span>
+                </div>
                 
             </> 
         )
         
         return (
           <div key={`comment-${idx}`}>
-              <div>
-                 <span> {comment.name} says: <p>{comment.content}</p></span>
-              </div>
-            {currentUser?.id === comment.user ? buttons : ''}
+              {comment.name} says: <div>{comment.content} <span>{currentUser?.id === comment.user ? buttons : ''} </span></div>
+                 
           </div>
         )
       })
@@ -111,21 +111,15 @@ export default function PostDetails({currentUser}) {
                 {currentUser?.id === post.user?._id && showEdit}    
                 </div>
                 {/* // _____________________________________________DP */}
-
+                <Card.Header><strong><h3>Comments:</h3></strong></Card.Header>
 			</Card.Text>
+            {commentComponents}
 		</Card.Body>			
         </Card>
         
         </div>
 
-        <div>
-        <h3>Comments:</h3>
-        <Card className="w-75 mx-auto mt-4">
-            <Card.Body>{commentComponents} </Card.Body>
-        </Card>
     
-              
-        </div>  
        {currentUser && commentForm}
             
 
