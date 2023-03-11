@@ -17,9 +17,9 @@ export default function Profile({ currentUser, handleLogout }) {
 	const generatePosts = posts.map((p, i) => {
 		return (
 	  			<div key={`post-${i}`}>
-					<Card className="w-75 mx-auto mt-4" style={{}}>
+					<Card className="w-50 mx-auto my-5" style={{background: 'transparent'}}>
 						<Card.Header><strong>{p.title}</strong></Card.Header>
-						<Card.Body>
+						<Card.Body className='my-4'>
 							<Card.Text>
 							{p.content}
 							</Card.Text>

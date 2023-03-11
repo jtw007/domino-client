@@ -23,9 +23,9 @@ export default function Home() {
 	const postComponents = posts.map((post, idx) => {
 		return (
 			<div key={`post-${idx}`}>
-				<Card className="w-75 mx-auto mt-4">
-					<Card.Header><strong><h3>{post.title}</h3></strong></Card.Header>
-					<Card.Body>
+				<Card className="w-50 mx-auto my-5" style={{ background: 'transparent' }}>
+					<Card.Header className=''><strong><h3>{post.title}</h3></strong></Card.Header>
+					<Card.Body className='my-4'>
 						<Card.Text>
 							by: {post?.user?.name}
 						</Card.Text>
@@ -39,7 +39,7 @@ export default function Home() {
 	})
 
 	return (
-		<div>
+		<div className='mt-3'>
 			<h1 className="home-text" style={{ color: 'rgba(0,68,129)' }}>McFaceBook</h1>
 			{postComponents}
 		</div>

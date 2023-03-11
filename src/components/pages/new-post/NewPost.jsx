@@ -47,7 +47,7 @@ export default function NewPost(){
         <div className="post-container d-flex justify-content-center" >
 
             <form onSubmit={handleSubmit}>
-                <div className="form-container" style={{width: 300,}}>
+                <div className="form-container mt-3" style={{width: 300}}>
                     <div className="form-sheet">
                     <p className="new-post fs-2">Create a Post</p>
                   
